@@ -5,16 +5,15 @@
 //  Created by David Croy on 5/8/20.
 //  Copyright © 2020 DoubleDog Software. All rights reserved.
 //
-
 import Foundation
 import SwiftUI
 import UserNotifications
 
 class LocalNotificationManager: ObservableObject {
-    
+    let identifier: String
     var notifications = [Notification]()
     
-    init() {
+    init(id: String) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if granted == true && error == nil {
                 print("Notifications permitted")
@@ -22,6 +21,7 @@ class LocalNotificationManager: ObservableObject {
                 print("Notifications not permitted")
             }
         }
+        identifier = id;
     }
 
     func sendNotification(title: String, subtitle: String?, body: String, launchIn: Double) {
@@ -44,7 +44,7 @@ class LocalNotificationManager: ObservableObject {
                 //        let attachment      = try! UNNotificationAttachment(identifier: imageName, url: imageURL, options: .none)
                 //        content.attachments = [attachment]
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: launchIn, repeats: false)
-                let request = UNNotificationRequest(identifier: "tes", content: content, trigger: trigger)
+                let request = UNNotificationRequest(identifier: self.identifier, content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                 // Schedule an alert-only notification.
             }
