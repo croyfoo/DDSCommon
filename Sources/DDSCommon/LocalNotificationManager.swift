@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 import UserNotifications
 
-class LocalNotificationManager: ObservableObject {
+public class LocalNotificationManager: ObservableObject {
     let identifier: String
     var notifications = [Notification]()
     
-    init(id: String) {
+    public init(id: String) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if granted == true && error == nil {
                 print("Notifications permitted")
@@ -24,7 +24,7 @@ class LocalNotificationManager: ObservableObject {
         identifier = id;
     }
 
-    func sendNotification(title: String, subtitle: String?, body: String, launchIn: Double) {
+    public func sendNotification(title: String, subtitle: String?, body: String, launchIn: Double) {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) ||
