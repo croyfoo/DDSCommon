@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AppUtlities {
+struct AppUtils {
     private static var _dateFormatter: DateFormatter?
     
     static func dateFormatter() -> DateFormatter {
