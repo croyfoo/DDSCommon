@@ -1,3 +1,4 @@
 # DDSCommon
 
-A description of this package.
+Common utilities used when developing Apps
+
