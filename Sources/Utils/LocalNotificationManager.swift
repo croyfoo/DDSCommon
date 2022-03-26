@@ -23,7 +23,16 @@ public class LocalNotificationManager: ObservableObject {
         }
         identifier = id;
     }
+    
+    public func requestAuthorization(options: UNAuthorizationOptions = [], completion: @escaping  (Bool) -> Void) {
+        UNUserNotificationCenter.current()
+            .requestAuthorization(options: options) { granted, _  in
+                // TODO: Fetch notification settings
+                completion(granted)
+            }
+    }
 
+    
     public func sendNotification(title: String, subtitle: String?, body: String, launchIn: Double) {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in

@@ -26,5 +26,6 @@ let package = Package(
                 path: "Sources"
         ),
         .testTarget( name: "DDSCommonTests", dependencies: ["DDSCommon"]),
+//        .binaryTarget(name: "Sparkle", path: "artifacts/")
     ]
 )
