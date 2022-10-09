@@ -50,15 +50,15 @@ case gz
 case app
 case md
     
-    func descLowercased() -> String {
+    public func descLowercased() -> String {
         self.rawValue.lowercased()
     }
     
-    var desc: String {
+    public var desc: String {
         self.rawValue.uppercased()
     }
     
-    var longDesc: LocalizedStringKey {
+    public var longDesc: LocalizedStringKey {
         switch self {
             case .png:
                 return "PNG Image"
@@ -117,7 +117,7 @@ case md
         }
     }
     
-    var longDesc1: LocalizedStringKey {
+    public var longDesc1: LocalizedStringKey {
         if isImage {
             return "Image"
         } else if isMovie {
