@@ -8,7 +8,6 @@
 import SwiftUI
 import WebKit
 
-#if os(macOS)
 struct WebView: NSViewRepresentable {
 
     var html: String
@@ -74,7 +73,6 @@ extension WKWebView: WKNavigationDelegate {
 //        didLoadSuccessfully?()
     }
 }
-#endif
 
 //struct WebView_Previews: PreviewProvider {
 //    static let parser = MarkdownParser()
