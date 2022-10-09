@@ -30,9 +30,7 @@ public extension View {
             .clipped()
             .shadow(radius: shadowRadius)
     }
-}
 
-extension View {
     @ViewBuilder
     func redacted(if condition: @autoclosure () -> Bool) -> some View {
         redacted(reason: condition() ? .placeholder : [])
