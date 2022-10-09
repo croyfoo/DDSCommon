@@ -8,7 +8,7 @@
 //https://www.hackingwithswift.com/example-code/language/how-to-find-the-difference-between-two-arrays
 import Foundation
 
-extension Array where Element: Hashable {
+public extension Array where Element: Hashable {
     func difference(from other: [Element]) -> [Element] {
         let thisSet  = Set(self)
         let otherSet = Set(other)
@@ -16,7 +16,7 @@ extension Array where Element: Hashable {
     }
 }
 
-extension Array {
+public extension Array {
     
     /// Transforms each element in the array into a Key-Value tuple.
     ///
