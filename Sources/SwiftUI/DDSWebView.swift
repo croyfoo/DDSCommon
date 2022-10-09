@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 
-struct WebView: NSViewRepresentable {
+struct DDSWebView: NSViewRepresentable {
 
     var html: String
     let preferences   = WKPreferences()
