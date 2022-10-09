@@ -10,7 +10,7 @@ import WebKit
 
 struct DDSWebView: NSViewRepresentable {
 
-    var html: String
+    public var html: String
     let preferences   = WKPreferences()
     let configuration = WKWebViewConfiguration()
 
