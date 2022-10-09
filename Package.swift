@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "DDSCommon",
     platforms: [
-        .macOS(.v11),
+        .macOS(.v12),
         .iOS(.v15)
     ],
     products: [
