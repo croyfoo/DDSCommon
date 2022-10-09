@@ -29,7 +29,7 @@ public enum ImageFormat: String {
 
 public extension Data {
 
-    internal var imageFormat: Type {
+    var imageFormat: Type {
 
         var values = [UInt8](repeating: 0, count: 1)
         self.copyBytes(to: &values, count: 1)
