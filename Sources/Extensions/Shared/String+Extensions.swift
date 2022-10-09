@@ -151,3 +151,31 @@ extension String {
         String(Array(repeating: "X", count: length))
     }
 }
+
+public extension String {
+    
+    internal var md5: String {
+        guard let data = self.data(using: .utf8) else { return "" }
+        return data.shaString
+    }
+    
+    func encodeUrl() -> String? {
+        return self.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)
+    }
+    
+    func decodeUrl() -> String? {
+        return self.removingPercentEncoding
+    }
+
+}
+
+public extension String {
+    
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+}
