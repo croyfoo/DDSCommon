@@ -50,12 +50,16 @@ case gz
 case app
 case md
     
-    public func descLowercased() -> String {
-        self.rawValue.lowercased()
+    public var descLowercased: String {
+        desc.lowercased()
     }
-    
+
+    public var descUppercased: String {
+        desc.uppercased()
+    }
+
     public var desc: String {
-        self.rawValue.uppercased()
+        self.rawValue
     }
     
     public var longDesc: LocalizedStringKey {
@@ -141,7 +145,7 @@ case md
         }
     }
     
-    var isImage: Bool {
+    public var isImage: Bool {
         switch self {
             case .png, .jpeg, .gif, .tiff, .heic, .jpg, .img:
                 return true
@@ -150,47 +154,47 @@ case md
         }
     }
     
-    var isMovie: Bool {
+    public var isMovie: Bool {
         self == .mov || self == .guicktime || self == .mp4
     }
     
-    var isMedia: Bool {
+    public var isMedia: Bool {
         isImage || isMovie
     }
     
-    var isText: Bool {
+    public var isText: Bool {
         self == .txt
     }
     
-    var isRTF: Bool {
+    public var isRTF: Bool {
         self == .rtf || self == .rtfd
     }
     
-    var isPDF: Bool {
+    public var isPDF: Bool {
         self == .pdf
     }
     
-    var isDMG: Bool {
+    public var isDMG: Bool {
         self == .dmg
     }
     
-    var isXIP: Bool {
+    public var isXIP: Bool {
         self == .xip
     }
     
-    var isJSON: Bool {
+    public var isJSON: Bool {
         self == .json
     }
     
-    var isEPUB: Bool {
+    public var isEPUB: Bool {
         return self == .epub
     }
     
-    var isCompressedArhive: Bool {
+    public var isCompressedArhive: Bool {
         self == .zip || self == .tgz || self == .tar || self == .gzip || self == .bz2
     }
     
-    var isApp: Bool {
+    public var isApp: Bool {
         self == .app
     }
 }
