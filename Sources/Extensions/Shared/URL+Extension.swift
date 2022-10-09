@@ -113,4 +113,17 @@ public extension URL {
     var creationDate: Date? {
         return attributes?[.creationDate] as? Date
     }
+    
+    func open() {
+#if os(macOS)
+        NSWorkspace.shared.open(self)
+#endif
+    }
 }
+
+extension URL: Identifiable {
+    public var id: String {
+        absoluteString
+    }
+}
+
