@@ -50,6 +50,10 @@ case gz
 case app
 case md
     
+    func descLowercased() -> String {
+        self.rawValue.lowercased()
+    }
+    
     var desc: String {
         self.rawValue.uppercased()
     }
