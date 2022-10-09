@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 public enum Type: String {
-    case rtf
-    case rtfd
+case rtf
+case rtfd
 case img
 case txt
 case fileurl

@@ -119,6 +119,12 @@ public extension URL {
         NSWorkspace.shared.open(self)
 #endif
     }
+        
+    func addingDictionaryAsQuery(_ dict: [String: String]) -> Self {
+        var components = URLComponents(url: self, resolvingAgainstBaseURL: false)!
+        components.addDictionaryAsQuery(dict)
+        return components.url ?? self
+    }
 }
 
 extension URL: Identifiable {
