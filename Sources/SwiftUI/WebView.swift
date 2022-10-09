@@ -8,13 +8,13 @@
 import SwiftUI
 import WebKit
 
-struct WebView: NSViewRepresentable {
+public struct WebView: NSViewRepresentable {
 
     var html: String
     let preferences   = WKPreferences()
     let configuration = WKWebViewConfiguration()
 
-    func makeNSView(context: Context) -> WKWebView {
+    public func makeNSView(context: Context) -> WKWebView {
 #if DEBUG
         preferences.setValue(true, forKey: "developerExtrasEnabled")
 #endif
@@ -26,7 +26,7 @@ struct WebView: NSViewRepresentable {
         return webView
     }
     
-    func updateNSView(_ webView: WKWebView, context: Context) {
+    public func updateNSView(_ webView: WKWebView, context: Context) {
         webView.loadHTMLString(html, baseURL: Bundle.main.resourceURL)
     }
 }
