@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
     enum TrimmingOptions {
         case all
@@ -50,7 +50,7 @@ extension String {
     }
 }
 
-extension String {
+public extension String {
     
     var length: Int {
         count
@@ -126,7 +126,7 @@ public extension String {
 
 // MARK: -
 // MARK: Check if a string is a valid URL
-extension String {
+public extension String {
     var validURL: Bool {
         let regEx = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
         let predicate = NSPredicate(format: "SELF MATCHES %@", argumentArray: [regEx])
@@ -134,19 +134,19 @@ extension String {
     }
 }
 
-extension String {
+public extension String {
     /*
      ```
      "https://sindresorhus.com".openUrl()
      ```
      */
     func openUrl() {
-//        URL(string: self)?.open()
+        URL(string: self)?.open()
     }
 }
 
 //https://www.avanderlee.com/swiftui/redacted-view-modifier/?utm_source=swiftlee&utm_medium=swiftlee_weekly&utm_campaign=issue_102
-extension String {
+public extension String {
     static func placeholder(length: Int) -> String {
         String(Array(repeating: "X", count: length))
     }
@@ -154,7 +154,7 @@ extension String {
 
 public extension String {
     
-    internal var md5: String {
+    var md5: String {
         guard let data = self.data(using: .utf8) else { return "" }
         return data.shaString
     }
