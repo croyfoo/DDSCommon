@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension StringProtocol {
+public extension StringProtocol {
     var wordCount: Int {
         words.count
     }
@@ -52,6 +52,4 @@ extension StringProtocol {
         }
         return byWords
     }
-    
-
 }
