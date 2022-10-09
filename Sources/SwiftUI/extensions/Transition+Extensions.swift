@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension AnyTransition {
+public extension AnyTransition {
     static var pageTransitionNext: AnyTransition {
         let removal = AnyTransition.move(edge: .leading)
             .combined(with: .opacity)

@@ -8,8 +8,8 @@
 import AppKit
 import SwiftUI
 
-extension View {
-    public func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .infinity) -> some View {
+public extension View {
+    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .infinity) -> some View {
         self
 //            .padding()
             .frame(maxWidth: maxWidth, alignment: alignment)
@@ -19,7 +19,7 @@ extension View {
             )
     }
     
-    public func transparentBoxWithShadow(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, shadowRadius: CGFloat = 10) -> some View {
+    func transparentBoxWithShadow(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, shadowRadius: CGFloat = 10) -> some View {
         self
 //            .padding()
             .frame(maxWidth: .infinity)

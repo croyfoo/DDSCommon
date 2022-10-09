@@ -21,6 +21,7 @@ struct ThreeColumn<Left: View, Center: View, Right: View>: View {
         self.right   = right()
         self.spacing = spacing
     }
+    
     var body: some View {
         HStack(spacing: spacing) {
             left
