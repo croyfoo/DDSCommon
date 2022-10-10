@@ -10,9 +10,9 @@
 import SwiftUI
 
 #if os(macOS)
-extension NSWindow {
+public extension NSWindow {
     
-    public static func createStandardWindow(withTitle title: String,
+    static func createStandardWindow(withTitle title: String,
                                      width: CGFloat = 800, height: CGFloat = 600,
                                      styleMask style: NSWindow.StyleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView] ) -> NSWindow {
         let window = NSWindow(
