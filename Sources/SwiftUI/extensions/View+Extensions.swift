@@ -14,7 +14,7 @@ public extension View {
             .frame(maxWidth: maxWidth, alignment: alignment)
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(Color(.windowBackgroundColor).opacity(opacity))
+                    .fill(Color.backgroundColor.opacity(opacity))
             )
     }
     
@@ -24,7 +24,7 @@ public extension View {
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(Color(.windowBackgroundColor).opacity(opacity))
+                    .fill(Color.backgroundColor.opacity(opacity))
             )
             .clipped()
             .shadow(radius: shadowRadius)
