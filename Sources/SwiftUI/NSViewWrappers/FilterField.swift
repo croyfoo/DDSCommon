@@ -9,6 +9,7 @@
 import SwiftUI
 
 /// A wrapper around NSSearchField so we get a macOS-native search box
+#if os(macOS)
 struct FilterField: NSViewRepresentable {
     /// The text entered by the user.
     @Binding var text: String
@@ -52,3 +53,4 @@ struct FilterField: NSViewRepresentable {
         }
     }
 }
+#endif

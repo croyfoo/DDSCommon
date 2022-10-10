@@ -30,6 +30,7 @@ import SwiftUI
  }
  ```
  */
+#if os(macOS)
 struct ScrollableTextView: NSViewRepresentable {
     typealias NSViewType = NSScrollView
 
@@ -94,3 +95,4 @@ struct ScrollableTextView: NSViewRepresentable {
         }
     }
 }
+#endif
