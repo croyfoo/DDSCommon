@@ -69,11 +69,13 @@ struct RecessedButton<Label: View>: View {
             .background(RoundedRectangle(cornerRadius: 4).fill(bgColor).animation(.none))
             .onHover { inside in
                 isHovering = inside
+#if os(macOS)
                 if !isEnabled && inside {
                     NSCursor.operationNotAllowed.push()
                 } else {
                     NSCursor.pop()
                 }
+#endif
             }
     }
 }
