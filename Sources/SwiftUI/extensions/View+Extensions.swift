@@ -8,9 +8,11 @@
 import SwiftUI
 
 public extension View {
-    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .zero, color: Color = Color.backgroundColor) -> some View {
+    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .zero, color: Color = Color.backgroundColor, padding: CGFloat? = nil) -> some View {
         self
-//            .padding()
+            .if (padding != nil ) { view in
+                view.padding(padding!)
+            }
             .if (maxWidth != .zero) { view in
                 view.frame(maxWidth: maxWidth, alignment: alignment)
             }
