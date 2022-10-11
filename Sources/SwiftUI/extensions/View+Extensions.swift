@@ -8,10 +8,12 @@
 import SwiftUI
 
 public extension View {
-    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .infinity, color: Color = Color.backgroundColor) -> some View {
+    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .zero, color: Color = Color.backgroundColor) -> some View {
         self
 //            .padding()
-            .frame(maxWidth: maxWidth, alignment: alignment)
+            .if (maxWidth != .zero) { view in
+                view.frame(maxWidth: maxWidth, alignment: alignment)
+            }
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .fill(color.opacity(opacity))
