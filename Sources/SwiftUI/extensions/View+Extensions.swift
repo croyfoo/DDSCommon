@@ -18,7 +18,8 @@ public extension View {
             }
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(color.opacity(opacity))
+                    .stroke(Color.accentColor)
+//                    .fill(color.opacity(opacity))
             )
     }
     
