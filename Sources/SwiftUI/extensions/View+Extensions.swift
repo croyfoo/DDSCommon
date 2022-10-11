@@ -17,9 +17,9 @@ public extension View {
                 view.frame(maxWidth: maxWidth, alignment: alignment)
             }
             .background(
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color.accentColor)
-//                    .fill(color.opacity(opacity))
+                RoundedRectangle(cornerRadius: cornerRadius)//.fill(.blue.opacity(0.2))
+                    .strokeBorder(color)
+                    .background(RoundedRectangle(cornerRadius: cornerRadius).fill(color.opacity(opacity)))
             )
     }
     
