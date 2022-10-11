@@ -8,13 +8,13 @@
 import SwiftUI
 
 public extension View {
-    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .infinity) -> some View {
+    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .infinity, color: Color = Color.backgroundColor) -> some View {
         self
 //            .padding()
             .frame(maxWidth: maxWidth, alignment: alignment)
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(Color.backgroundColor.opacity(opacity))
+                    .fill(color.opacity(opacity))
             )
     }
     
