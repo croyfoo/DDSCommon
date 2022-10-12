@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Bool {
+public extension Bool {
     static var iOS15: Bool {
         guard #available(iOS 16, *) else {
             // It's iOS 15 so return true.
