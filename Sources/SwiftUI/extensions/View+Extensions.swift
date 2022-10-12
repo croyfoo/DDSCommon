@@ -148,3 +148,40 @@ public extension ShapeStyle where Self == Color {
         )
     }
 }
+
+extension View {
+    func circularButton(color: Color) -> ModifiedContent<Self, CircularButtonModifier> {
+        return modifier(CircularButtonModifier(color: color))
+    }
+}
+
+// MARK: - Circular Image Modifier
+extension View {
+    func profileImage() -> ModifiedContent<Self, CircularSpinnyImageModifier> {
+        return modifier(CircularSpinnyImageModifier())
+    }
+    
+    func boldText() -> ModifiedContent<Self, BoldTextModifier> {
+        return modifier(BoldTextModifier())
+    }
+}
+
+struct Show: ViewModifier {
+    let isVisible: Bool
+    
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if isVisible {
+            content
+        } else {
+            content.hidden()
+        }
+    }
+}
+
+public extension View {
+    func show(isVisible: Bool) -> some View {
+        ModifiedContent(content: self, modifier: Show(isVisible: isVisible))
+    }
+}
+
