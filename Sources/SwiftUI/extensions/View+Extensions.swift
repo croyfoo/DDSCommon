@@ -25,7 +25,6 @@ public extension View {
     
     func transparentBoxWithShadow(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, shadowRadius: CGFloat = 10) -> some View {
         self
-//            .padding()
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
@@ -149,20 +148,11 @@ public extension ShapeStyle where Self == Color {
     }
 }
 
-extension View {
-    func circularButton(color: Color) -> ModifiedContent<Self, CircularButtonModifier> {
-        return modifier(CircularButtonModifier(color: color))
-    }
-}
 
 // MARK: - Circular Image Modifier
-extension View {
-    func profileImage() -> ModifiedContent<Self, CircularSpinnyImageModifier> {
-        return modifier(CircularSpinnyImageModifier())
-    }
-    
-    func boldText() -> ModifiedContent<Self, BoldTextModifier> {
-        return modifier(BoldTextModifier())
+public extension View {
+    func profileImage() -> some View {
+        ModifiedContent(content: self, modifier: CircularSpinnyImageModifier())
     }
 }
 

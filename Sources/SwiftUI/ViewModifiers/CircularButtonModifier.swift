@@ -27,3 +27,9 @@ struct CircularButtonModifier: ViewModifier {
             }
     }
 }
+
+public extension View {
+    func circularButton(color: Color) -> some View {
+        ModifiedContent(content: self, modifier: CircularButtonModifier(color: color))
+    }
+}

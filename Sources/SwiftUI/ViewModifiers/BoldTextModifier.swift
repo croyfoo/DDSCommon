@@ -9,7 +9,13 @@ import SwiftUI
 
 struct BoldTextModifier: ViewModifier {
     func body(content: Content) -> some View {
-    content
+        content
             .font(.title2.bold())
+    }
+}
+
+public extension View {
+    func boldText() -> some View {
+        ModifiedContent(content: self, modifier: BoldTextModifier())
     }
 }
