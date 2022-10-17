@@ -11,6 +11,8 @@ struct CircularButtonModifier: ViewModifier {
     @State var hovering: Bool = false
 
     let color: Color
+    let opacity: CGFloat
+    let hoverOpacity: CGFloat
 
     func body(content: Content) -> some View {
         content
@@ -29,7 +31,7 @@ struct CircularButtonModifier: ViewModifier {
 }
 
 public extension View {
-    func circularButton(color: Color) -> some View {
-        ModifiedContent(content: self, modifier: CircularButtonModifier(color: color))
+    func circularButton(color: Color, opacity: CGFloat = 0.1, hoverOpacity: CGFloat = 0.5) -> some View {
+        ModifiedContent(content: self, modifier: CircularButtonModifier(color: color, opacity: opacity,hoverOpacity: hoverOpacity))
     }
 }
