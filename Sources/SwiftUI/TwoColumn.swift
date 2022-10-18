@@ -16,7 +16,7 @@ public struct TwoColumn<Left: View, Right: View>: View {
     let leftAlignment: Alignment
     let rightAlignment: Alignment
     
-    init(spacing: CGFloat = 8.0, leftAlignment: Alignment = .trailing, rightAlignment: Alignment = .leading, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
+    public init(spacing: CGFloat = 8.0, leftAlignment: Alignment = .trailing, rightAlignment: Alignment = .leading, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
         self.left           = left()
         self.right          = right()
         self.spacing        = spacing
