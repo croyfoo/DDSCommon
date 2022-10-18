@@ -13,23 +13,26 @@ struct TwoColumn<Left: View, Right: View>: View {
     var spacing: CGFloat
     let left: Left
     let right: Right
-
-    public init(spacing: CGFloat = 8.0, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
-        self.left    = left()
-        self.right   = right()
-        self.spacing = spacing
+    let leftAlignment: Alignment
+    let rightAlignment: Alignment
+    
+    init(spacing: CGFloat = 8.0, leftAlignment: Alignment = .trailing, rightAlignment: Alignment = .leading, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
+        self.left           = left()
+        self.right          = right()
+        self.spacing        = spacing
+        self.leftAlignment  = leftAlignment
+        self.rightAlignment = rightAlignment
     }
-
     var body: some View {
         HStack(spacing: spacing) {
             left
-                .frame(maxWidth: .infinity, alignment: .trailing)
-//                .foregroundColor(.black)
-//                .background(Color.yellow)
+                .frame(maxWidth: .infinity, alignment: leftAlignment)
+            //                .foregroundColor(.black)
+            //                .background(Color.yellow)
             right
-                .frame(maxWidth: .infinity, alignment: .leading)
-//                .foregroundColor(.black)
-//                .background(Color.yellow)
+                .frame(maxWidth: .infinity, alignment: rightAlignment)
+            //                .foregroundColor(.black)
+            //                .background(Color.yellow)
         }
     }
 }
@@ -51,7 +54,7 @@ struct TwoColumn_Previews: PreviewProvider {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
-//            .background(Color.red)
+            .background(Color.red)
         }
         .frame(width: 200, height: 100)
     }
