@@ -8,6 +8,7 @@
 import SwiftUI
 
 public extension View {
+    
     func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .zero, color: Color = Color.backgroundColor, padding: CGFloat? = nil, border: Bool = false, shadow: Bool = false, shadowRadius: CGFloat = 10) -> some View {
         self
             .if (padding != nil ) { view in

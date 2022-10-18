@@ -14,11 +14,12 @@ struct TwoColumn<Left: View, Right: View>: View {
     let left: Left
     let right: Right
 
-    init(spacing: CGFloat = 8.0, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
+    public init(spacing: CGFloat = 8.0, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
         self.left    = left()
         self.right   = right()
         self.spacing = spacing
     }
+
     var body: some View {
         HStack(spacing: spacing) {
             left
