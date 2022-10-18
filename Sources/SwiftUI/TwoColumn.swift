@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TwoColumn<Left: View, Right: View>: View {
+public struct TwoColumn<Left: View, Right: View>: View {
     
     var spacing: CGFloat
     let left: Left
@@ -23,7 +23,8 @@ struct TwoColumn<Left: View, Right: View>: View {
         self.leftAlignment  = leftAlignment
         self.rightAlignment = rightAlignment
     }
-    var body: some View {
+    
+    public var body: some View {
         HStack(spacing: spacing) {
             left
                 .frame(maxWidth: .infinity, alignment: leftAlignment)

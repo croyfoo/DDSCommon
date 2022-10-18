@@ -26,9 +26,7 @@ struct RedactingView<Input: View, Output: View>: View {
 }
 
 extension View {
-    func whenRedacted<T: View>(
-        apply modifier: @escaping (Self) -> T
-    ) -> some View {
+    func whenRedacted<T: View>(apply modifier: @escaping (Self) -> T) -> some View {
         RedactingView(content: self, modifier: modifier)
     }
 }
