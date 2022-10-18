@@ -15,17 +15,19 @@ public struct TwoColumn<Left: View, Right: View>: View {
     let right: Right
     let leftAlignment: Alignment
     let rightAlignment: Alignment
-    
-    public init(spacing: CGFloat = 8.0, leftAlignment: Alignment = .trailing, rightAlignment: Alignment = .leading, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
+    let alignment: VerticalAlignment
+
+    public init(spacing: CGFloat = 8.0, alignment: VerticalAlignment = .center, leftAlignment: Alignment = .trailing, rightAlignment: Alignment = .leading, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
         self.left           = left()
         self.right          = right()
         self.spacing        = spacing
         self.leftAlignment  = leftAlignment
         self.rightAlignment = rightAlignment
+        self.alignment      = alignment
     }
     
     public var body: some View {
-        HStack(spacing: spacing) {
+        HStack(alignment: alignment, spacing: spacing) {
             left
                 .frame(maxWidth: .infinity, alignment: leftAlignment)
             //                .foregroundColor(.black)
