@@ -9,7 +9,7 @@ import SwiftUI
 
 public extension View {
     
-    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .zero, color: Color = Color.backgroundColor, padding: CGFloat? = nil, border: Bool = false, shadow: Bool = false, shadowRadius: CGFloat = 10) -> some View {
+    func transparentBox(_ opacity: Double = 0.2, cornerRadius: CGFloat = 10, alignment: Alignment = .leading, maxWidth: CGFloat = .zero, color: Color = Color.backgroundColor, padding: CGFloat? = nil, border: Bool = false, borderColor: Color = .clear, shadow: Bool = false, shadowRadius: CGFloat = 10) -> some View {
         self
             .if (padding != nil ) { view in
                 view.padding(padding!)
@@ -19,7 +19,7 @@ public extension View {
             }
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)//.fill(.blue.opacity(0.2))
-                    .strokeBorder( border ? color : .clear)
+                    .strokeBorder( border ? (borderColor == .clear ? color : borderColor) : .clear)
                     .background(RoundedRectangle(cornerRadius: cornerRadius).fill(color.opacity(opacity)))
             )
             .if(shadow) { view in
