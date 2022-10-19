@@ -24,7 +24,7 @@ public extension View {
             )
             .if(shadow) { view in
                 view.clipped()
-                    .shadow(radius: 2)
+                    .shadow(radius: 2, x: 4, y: 4)
             }
     }
     
@@ -50,12 +50,14 @@ public extension View {
 public extension View {
     
     func flipRotate(_ degrees: Double) -> some View {
-        return rotation3DEffect(Angle(degrees: degrees), axis: (x: 0.0, y: 1.0, z: 0.0))
+        rotation3DEffect(Angle(degrees: degrees), axis: (x: 0.0, y: 1.0, z: 0.0))
     }
     
-    func placedOnCard(_ color: Color) -> some View {
-        return padding(5).frame(width: 250, height: 150, alignment: .center)
-            .background(RoundedRectangle(cornerRadius: 20).foregroundColor(color))
+    @ViewBuilder
+    func placedOnCard(_ color: Color, width: CGFloat = 250, height: CGFloat = 150, corderRadius: CGFloat = 20) -> some View {
+        padding(5)
+            .frame(width: width, height: height, alignment: .center)
+            .background(RoundedRectangle(cornerRadius: corderRadius).foregroundColor(color))
     }
 }
 
