@@ -24,7 +24,7 @@ public extension View {
             )
             .if(shadow) { view in
                 view.clipped()
-                    .shadow(radius: 2, x: 4, y: 4)
+                    .shadow(radius: 2)
             }
     }
     
