@@ -17,11 +17,11 @@ public struct Backport<Content> {
     }
 }
 
-extension View {
+public extension View {
     var backport: Backport<Self> { Backport(self) }
 }
 
-extension Backport where Content: View {
+public extension Backport where Content: View {
     @ViewBuilder func contextMenu<M, P> (
         menuItems: () -> M, preview: () -> P) -> some View where M : View , P : View {
         if #available(iOS 16, macOS 13, *) {
@@ -32,7 +32,7 @@ extension Backport where Content: View {
     }
 }
 
-extension Backport where Content: View {
+public extension Backport where Content: View {
     @ViewBuilder func badge(_ count: Int) -> some View {
         if #available(iOS 15, macOS 12, *) {
             content.badge(count)
@@ -41,3 +41,4 @@ extension Backport where Content: View {
         }
     }
 }
+
