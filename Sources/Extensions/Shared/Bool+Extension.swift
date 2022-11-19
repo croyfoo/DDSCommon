@@ -17,6 +17,10 @@ public extension Bool {
         return false
     }
 
+    static var macOS: Bool {
+        macOS12 || macOS13
+    }
+    
     static var macOS12: Bool {
         guard #available(macOS 13, *) else {
             // It's macOS 12 so return true.

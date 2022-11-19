@@ -43,7 +43,7 @@ public class LocalNotificationManager: ObservableObject {
                 let content   = UNMutableNotificationContent()
                 content.title = title
                 
-                if let subtitle = subtitle {
+                if let subtitle {
                     content.subtitle = subtitle
                 }
                 content.body = body

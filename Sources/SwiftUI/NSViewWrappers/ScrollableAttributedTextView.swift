@@ -51,13 +51,13 @@ struct ScrollableAttributedTextView: NSViewRepresentable {
         textView.isEditable = isEditable
         nsView.resignFirstResponder()
         
-        if let attributedText = attributedText,
+        if let attributedText,
            attributedText != textView.attributedString() {
             //            let foo = attributedText.attribute(.foregroundColor, at: 0, effectiveRange: nil)
             textView.textStorage?.setAttributedString(attributedText)
         }
         
-        if let font = font {
+        if let font {
             textView.font = font
         }
         

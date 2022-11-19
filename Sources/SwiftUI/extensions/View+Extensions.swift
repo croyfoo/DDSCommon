@@ -59,6 +59,14 @@ public extension View {
             .frame(width: width, height: height, alignment: alignment)
             .background(RoundedRectangle(cornerRadius: corderRadius).foregroundColor(color))
     }
+
+    @ViewBuilder
+    func placedOnCard1(_ style: AnyShapeStyle, width: CGFloat = 250, height: CGFloat = 150, alignment: Alignment = .center, corderRadius: CGFloat = 20) -> some View {
+        padding(5)
+            .frame(width: width, height: height, alignment: alignment)
+            .background(style)
+//            .background(RoundedRectangle(cornerRadius: corderRadius).foregroundColor(color))
+    }
 }
 
 // MARK: -
