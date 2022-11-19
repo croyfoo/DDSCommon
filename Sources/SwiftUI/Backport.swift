@@ -44,12 +44,18 @@ public extension Backport where Content: View {
 
 #if os(macOS)
 public extension Backport where Content: View {
+    @available(macOS 13, *)
     @ViewBuilder func windowResizability(_ resizability: WindowResizability) -> some View {
         if #available(macOS 13, *) {
             content.windowResizability(resizability)
         } else {
-            Content
+            content
         }
+    }
+    
+    @available(macOS 11, *)
+    @ViewBuilder func windowResizability(_ resizability: Any) -> some View {
+        content
     }
 }
 #endif
