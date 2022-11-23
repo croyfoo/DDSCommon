@@ -47,6 +47,7 @@ public extension View {
 
 // MARK: -
 // MARK: FLipRotate
+@available(macOS 12.0, *)
 public extension View {
     
     func flipRotate(_ degrees: Double) -> some View {
@@ -60,6 +61,7 @@ public extension View {
             .background(RoundedRectangle(cornerRadius: corderRadius).foregroundColor(color))
     }
 
+    @available(macOS 12.0, *)
     @ViewBuilder
     func placedOnCard1(_ style: AnyShapeStyle, width: CGFloat = 250, height: CGFloat = 150, alignment: Alignment = .center, corderRadius: CGFloat = 20) -> some View {
         padding(5)

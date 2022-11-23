@@ -18,7 +18,6 @@ struct ImageButton: ViewModifier {
                 content
                 if !text.isEmpty {
                     imageButton()
-//f                        .padding(.trailing, 8)
                 }
             } else {
                 imageButton()
@@ -51,20 +50,6 @@ struct ClearButton: ViewModifier {
             
             if !text.isEmpty {
                 imgButton()
-                //                Button {
-                //                    text = ""
-                //                } label: {
-                //                    if #available(macOS 12.0, *) {
-                //                        Image(systemName: "delete.left")
-                //                            .foregroundStyle(.gray)
-                //                    } else {
-                //                        Image(systemName: "delete.left")
-                //                            .foregroundColor(.gray)
-                //                    }
-                //                }
-                //                .buttonStyle(.plain)
-                //                .padding(.trailing, 4)
-                //            }
             }
         }
     }
@@ -73,13 +58,8 @@ struct ClearButton: ViewModifier {
         Button {
             text = ""
         } label: {
-            if #available(macOS 12.0, *) {
-                Image(systemName: "delete.left")
-                    .foregroundStyle(.gray)
-            } else {
-                Image(systemName: "delete.left")
-                    .foregroundColor(.gray)
-            }
+            Image(systemName: "delete.left")
+                .foregroundStyle(.gray)
         }
         .buttonStyle(.plain)
         .padding(.trailing, 4)

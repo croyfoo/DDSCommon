@@ -23,6 +23,5 @@ public extension NSWindow {
         window.title = title
         return window
     }
-    
 }
 #endif
