@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
     
     func imgTextField(placeHolder: String = "", showPlaceHolder: Bool = true, height: CGFloat = 50, width: CGFloat = 250,
                       leadingImage: String) -> some View {

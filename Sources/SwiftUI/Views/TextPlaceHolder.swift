@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-extension View {
+public extension View {
 
     func textPlaceHolder(alignment: Alignment = .leading, shouldShow: Bool, @ViewBuilder placeholder: @escaping () -> some View) -> some View {
         modifier(TextPlaceHolder(alignment: alignment, shouldShow: shouldShow, placeHolder: placeholder))

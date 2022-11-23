@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
     
     func fieldTitle(_ title: String, font: Font = .caption) -> some View {
         modifier(FieldTitle(title, font: font))
