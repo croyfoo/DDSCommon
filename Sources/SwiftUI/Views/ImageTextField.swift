@@ -33,7 +33,12 @@ public extension View {
                       @ViewBuilder trailingImage: @escaping () -> some View) -> some View {
         modifier(ImageTextField(placeHolder: placeHolder, showPlaceHolder: showPlaceHolder, height: height, width: width, trailingImage: trailingImage))
     }
-    
+
+    func imgTextField(placeHolder: String = "", showPlaceHolder: Bool = true, height: CGFloat = 50, width: CGFloat = 250, leadingImage: String,
+                      @ViewBuilder trailingImage: @escaping () -> some View) -> some View {
+        modifier(ImageTextField(placeHolder: placeHolder, showPlaceHolder: showPlaceHolder, height: height, width: width, leadingImage: leadingImage, trailingImage: trailingImage))
+    }
+
     func imgTextField(placeHolder: String = "", showPlaceHolder: Bool = true, height: CGFloat = 50, width: CGFloat = 250,
                       @ViewBuilder leadingImage: @escaping () -> some View,
                       @ViewBuilder trailingImage: @escaping () -> some View) -> some View {
@@ -65,7 +70,16 @@ struct ImageTextField<LeadingImage: View, TrailingImage: View>: ViewModifier {
             Image(systemName: trailingImage)
         }
     }
-    
+
+    public init(placeHolder: String = "", showPlaceHolder: Bool = true, height: CGFloat = 50, width: CGFloat = 250, leadingImage: String,
+                @ViewBuilder trailingImage: @escaping () -> TrailingImage) where LeadingImage == Image {
+        self.init(placeHolder: placeHolder, showPlaceHolder: showPlaceHolder, height: height, width: width) {
+            Image(systemName: leadingImage)
+        } trailingImage: {
+            trailingImage()
+        }
+    }
+
     public init(placeHolder: String = "", showPlaceHolder: Bool = true, height: CGFloat = 50, width: CGFloat = 250, leadingImage: String, trailingImage: String) where LeadingImage == Image, TrailingImage == Image {
         self.init(placeHolder: placeHolder, showPlaceHolder: showPlaceHolder, height: height, width: width) {
             Image(systemName: leadingImage)
