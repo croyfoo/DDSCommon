@@ -30,14 +30,24 @@ public extension Backport where Content: View {
             content.contextMenu(menuItems: menuItems)
         }
     }
-}
 
-public extension Backport where Content: View {
     @ViewBuilder func badge(_ count: Int) -> some View {
         if #available(iOS 15, macOS 12, *) {
             content.badge(count)
         } else {
             content
+        }
+    }
+
+    @ViewBuilder func foregroundStyle(_ style: any ShapeStyle) -> some View  {
+        if #available(iOS 15, macOS 12, *) {
+            content.foregroundStyle(style)
+        } else {
+            if let color = style as? Color {
+                content.foregroundColor(color)
+            } else {
+                content
+            }
         }
     }
 }
