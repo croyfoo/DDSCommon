@@ -54,21 +54,21 @@ public extension View {
         rotation3DEffect(Angle(degrees: degrees), axis: (x: 0.0, y: 1.0, z: 0.0))
     }
     
-    @ViewBuilder
-    func placedOnCard(_ color: Color, width: CGFloat = 250, height: CGFloat = 150, alignment: Alignment = .center, corderRadius: CGFloat = 20) -> some View {
-        padding(5)
-            .frame(width: width, height: height, alignment: alignment)
-            .background(RoundedRectangle(cornerRadius: corderRadius).foregroundColor(color))
-    }
-
-    @available(macOS 12.0, *)
-    @ViewBuilder
-    func placedOnCard1(_ style: AnyShapeStyle, width: CGFloat = 250, height: CGFloat = 150, alignment: Alignment = .center, corderRadius: CGFloat = 20) -> some View {
-        padding(5)
-            .frame(width: width, height: height, alignment: alignment)
-            .background(style)
+//    @ViewBuilder
+//    func placedOnCard(_ color: Color, width: CGFloat = 250, height: CGFloat = 150, alignment: Alignment = .center, corderRadius: CGFloat = 20) -> some View {
+//        padding(5)
+//            .frame(width: width, height: height, alignment: alignment)
 //            .background(RoundedRectangle(cornerRadius: corderRadius).foregroundColor(color))
-    }
+//    }
+//
+//    @available(macOS 12.0, *)
+//    @ViewBuilder
+//    func placedOnCard1(_ style: AnyShapeStyle, width: CGFloat = 250, height: CGFloat = 150, alignment: Alignment = .center, corderRadius: CGFloat = 20) -> some View {
+//        padding(5)
+//            .frame(width: width, height: height, alignment: alignment)
+//            .background(style)
+////            .background(RoundedRectangle(cornerRadius: corderRadius).foregroundColor(color))
+//    }
 }
 
 // MARK: -
