@@ -22,11 +22,11 @@ public extension NSColor {
     }
     
     private func hueColorWithBrightnessAmount(_ amount: CGFloat) -> NSColor {
-        var hue: CGFloat = 0
+        var hue: CGFloat        = 0
         var saturation: CGFloat = 0
         var brightness: CGFloat = 0
-        var alpha: CGFloat = 0
-        let color =     usingColorSpace(NSColorSpace.genericRGB)
+        var alpha: CGFloat      = 0
+        let color               =     usingColorSpace(NSColorSpace.genericRGB)
 
         #if os(iOS)
         if color?.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha) {
