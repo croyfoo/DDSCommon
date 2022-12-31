@@ -8,11 +8,12 @@
 import SwiftUI
 
 @available(macOS 12.0, *)
+
 public extension View {
     func placeOnCard(_ style: any ShapeStyle, height: CGFloat? = nil,
                      width: CGFloat? = nil, cornerRadius: CGFloat = 10,
                      alignment: Alignment = .center,  shadow: Bool = false,
-                     shadowRadius: CGFloat = 5) -> some View {
+                     shadowRadius: CGFloat = 10) -> some View {
         modifier(PlacedOnCard(alignment: alignment, style: AnyShapeStyle(style),
                               height: height, width: width,  cornerRadius: cornerRadius,
                               shadow: shadow, shadowRadius: shadowRadius))
