@@ -43,6 +43,12 @@ public extension View {
     func redacted(if condition: @autoclosure () -> Bool, reason: RedactionReasons = .placeholder) -> some View {
         redacted(reason: condition() ? reason : [])
     }
+    
+    func addBorder<S>(_ content: S, width: CGFloat = 1, cornerRadius: CGFloat) -> some View where S : ShapeStyle {
+        let roundedRect = RoundedRectangle(cornerRadius: cornerRadius)
+        return clipShape(roundedRect)
+            .overlay(roundedRect.strokeBorder(content, lineWidth: width))
+    }
 }
 
 // MARK: -
@@ -53,7 +59,7 @@ public extension View {
     func flipRotate(_ degrees: Double) -> some View {
         rotation3DEffect(Angle(degrees: degrees), axis: (x: 0.0, y: 1.0, z: 0.0))
     }
-    
+
 //    @ViewBuilder
 //    func placedOnCard(_ color: Color, width: CGFloat = 250, height: CGFloat = 150, alignment: Alignment = .center, corderRadius: CGFloat = 20) -> some View {
 //        padding(5)
