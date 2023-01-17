@@ -44,10 +44,12 @@ import SwiftUI
 struct ImageButton<Img: View>: ViewModifier {
     let aligment: Alignment
     let image: Img
+    let strokeColor: Color
     
-    public init(_ alignment: Alignment, @ViewBuilder img: @escaping () -> Img) {
+    public init(_ alignment: Alignment, strokeColor: Color = .foregroundDarkHover, @ViewBuilder img: @escaping () -> Img) {
         self.aligment = alignment
         self.image    = img()
+        self.strokeColor = strokeColor
     }
     
     func body(content: Content) -> some View {
@@ -62,7 +64,7 @@ struct ImageButton<Img: View>: ViewModifier {
                 content
             }
         }
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
+        .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(strokeColor, lineWidth: 2))
     }
     
 //    @ViewBuilder
