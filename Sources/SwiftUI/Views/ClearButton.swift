@@ -112,8 +112,8 @@ public extension View {
 //    public func imageButton(text: Binding<String>, alignment: Alignment = .trailing, imageName: String = "delete.left" ) -> some View {
 //        modifier(ImageButton(text: text, aligment: alignment, imageName: imageName))
 //    }
-    func imageButton(_ alignment: Alignment = .trailing, @ViewBuilder leadingImage: @escaping () -> some View) -> some View {
-        modifier(ImageButton(alignment, img: leadingImage))
+    func imageButton(_ alignment: Alignment = .trailing, strokeColor: Color = .foregroundDarkHover, @ViewBuilder leadingImage: @escaping () -> some View) -> some View {
+        modifier(ImageButton(alignment, strokeColor: strokeColor, img: leadingImage))
     }
 }
 
