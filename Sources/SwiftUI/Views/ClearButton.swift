@@ -102,15 +102,15 @@ struct ClearButton: ViewModifier {
     }
 }
 
-extension View {
-    public func clearButton(text: Binding<String>) -> some View {
+public extension View {
+    func clearButton(text: Binding<String>) -> some View {
         modifier(ClearButton(text: text))
     }
 
 //    public func imageButton(text: Binding<String>, alignment: Alignment = .trailing, imageName: String = "delete.left" ) -> some View {
 //        modifier(ImageButton(text: text, aligment: alignment, imageName: imageName))
 //    }
-    public func imageButton(_ alignment: Alignment = .trailing, @ViewBuilder leadingImage: @escaping () -> some View) -> some View {
+    func imageButton(_ alignment: Alignment = .trailing, @ViewBuilder leadingImage: @escaping () -> some View) -> some View {
         modifier(ImageButton(alignment, img: leadingImage))
     }
 }
