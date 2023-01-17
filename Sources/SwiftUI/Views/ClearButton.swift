@@ -7,38 +7,74 @@
 
 import SwiftUI
 
-struct ImageButton: ViewModifier {
-    @Binding var text: String
+//struct ImageButton: ViewModifier {
+//    @Binding var text: String
+//    let aligment: Alignment
+//    let imageName: String
+//
+//    func body(content: Content) -> some View {
+//        HStack {
+//            if aligment == .trailing {
+//                content
+//                if !text.isEmpty {
+//                    imageButton()
+//                }
+//            } else {
+//                imageButton()
+//                    .padding(.leading, 4)
+//                content
+//            }
+//        }
+//        .padding(6)
+//        .overlay(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
+//    }
+//
+//    @ViewBuilder
+//    func imageButton() -> some View {
+//            Button {
+//                text = ""
+//            } label: {
+//                Image(systemName: imageName)
+//            }
+//            .buttonStyle(.plain)
+////            .focusable(false)
+//    }
+//}
+
+struct ImageButton<Img: View>: ViewModifier {
     let aligment: Alignment
-    let imageName: String
+    let image: Img
+    
+    public init(_ alignment: Alignment, @ViewBuilder img: @escaping () -> Img) {
+        self.aligment = alignment
+        self.image    = img()
+    }
     
     func body(content: Content) -> some View {
         HStack {
             if aligment == .trailing {
                 content
-                if !text.isEmpty {
-                    imageButton()
-                }
+                image
+                    .padding(.trailing, aligment == .trailing ? 5: 0)
             } else {
-                imageButton()
+                image
                     .padding(.leading, 4)
                 content
             }
         }
-        .padding(6)
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
     }
     
-    @ViewBuilder
-    func imageButton() -> some View {
-            Button {
-                text = ""
-            } label: {
-                Image(systemName: imageName)
-            }
-            .buttonStyle(.plain)
-//            .focusable(false)
-    }
+//    @ViewBuilder
+//    func imageButton() -> some View {
+//        Button {
+//            text = ""
+//        } label: {
+//            Image(systemName: imageName)
+//        }
+//        .buttonStyle(.plain)
+//        //            .focusable(false)
+//    }
 }
 
 struct ClearButton: ViewModifier {
@@ -67,12 +103,15 @@ struct ClearButton: ViewModifier {
 }
 
 extension View {
-    func clearButton(text: Binding<String>) -> some View {
+    public func clearButton(text: Binding<String>) -> some View {
         modifier(ClearButton(text: text))
     }
 
-    func imageButton(text: Binding<String>, alignment: Alignment = .trailing, imageName: String = "delete.left" ) -> some View {
-        modifier(ImageButton(text: text, aligment: alignment, imageName: imageName))
+//    public func imageButton(text: Binding<String>, alignment: Alignment = .trailing, imageName: String = "delete.left" ) -> some View {
+//        modifier(ImageButton(text: text, aligment: alignment, imageName: imageName))
+//    }
+    public func imageButton(_ alignment: Alignment = .trailing, @ViewBuilder leadingImage: @escaping () -> some View) -> some View {
+        modifier(ImageButton(alignment, img: leadingImage))
     }
 }
 
@@ -83,11 +122,18 @@ struct ClearButton_Previews: PreviewProvider {
             StatefulPreviewWrapper("") {
                 TextField("Enter something", text: $0)
                     .textFieldStyle(.plain)
-                    .imageButton(text: $0, alignment: .trailing)
+                    .padding(5)
+//                    .imageButton(.trailing) {
+//                        Image(systemName: "delete.left")
+//                            .padding(.trailing, 5)
+//                    }
+                    .imageButton(.trailing) {
+                        Image(systemName: "magnifyingglass")
+                    }
                     .padding()
             }
         }
-        .frame(width: 200, height: 200)
+        .frame(width: 300, height: 200)
     }
 }
 
