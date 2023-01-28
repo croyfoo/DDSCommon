@@ -29,11 +29,11 @@ public struct TwoColumn<Left: View, Right: View>: View {
     public var body: some View {
         HStack(alignment: alignment, spacing: spacing) {
             left
-                .frame(maxWidth: .infinity, alignment: leftAlignment)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: leftAlignment)
             //                .foregroundColor(.black)
             //                .background(Color.yellow)
             right
-                .frame(maxWidth: .infinity, alignment: rightAlignment)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: rightAlignment)
             //                .foregroundColor(.black)
             //                .background(Color.yellow)
         }
