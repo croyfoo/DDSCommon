@@ -8,35 +8,33 @@
 
 import SwiftUI
 
-public struct TwoColumn<Left: View, Right: View>: View {
+public struct TwoColumn<Leading: View, Trailing: View>: View {
     
     var spacing: CGFloat
-    let left: Left
-    let right: Right
-    let leftAlignment: Alignment
-    let rightAlignment: Alignment
+    let leading: Leading
+    let trailing: Trailing
+    let leadingAlignment: Alignment
+    let trailingAlignment: Alignment
     let alignment: VerticalAlignment
 
-    public init(spacing: CGFloat = 8.0, alignment: VerticalAlignment = .center, leftAlignment: Alignment = .trailing, rightAlignment: Alignment = .leading, @ViewBuilder left: () -> Left, @ViewBuilder right: () -> Right) {
-        self.left           = left()
-        self.right          = right()
-        self.spacing        = spacing
-        self.leftAlignment  = leftAlignment
-        self.rightAlignment = rightAlignment
-        self.alignment      = alignment
+    public init(spacing: CGFloat = 8.0, alignment: VerticalAlignment = .center, leadingAlignment: Alignment = .trailing, trailingAlignment: Alignment = .leading, @ViewBuilder leading: () -> Leading, @ViewBuilder trailing: () -> Trailing) {
+        self.leading            = leading()
+        self.trailing           = trailing()
+        self.spacing            = spacing
+        self.leadingAlignment   = leadingAlignment
+        self.trailingAlignment  = trailingAlignment
+        self.alignment          = alignment
     }
     
     public var body: some View {
         HStack(alignment: alignment, spacing: spacing) {
-            left
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: leftAlignment)
-            //                .foregroundColor(.black)
-            //                .background(Color.yellow)
-            right
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: rightAlignment)
-            //                .foregroundColor(.black)
-            //                .background(Color.yellow)
+            prepareSubview(leading, alignment: leadingAlignment)
+            prepareSubview(trailing, alignment: trailingAlignment)
         }
+    }
+    
+    private func prepareSubview( _ view: some View, alignment: Alignment) -> some View {
+        view.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
     }
 }
 
@@ -46,12 +44,12 @@ struct TwoColumn_Previews: PreviewProvider {
             VStack(spacing: 8.0) {
                 TwoColumn {
                     Text("foo")
-                } right: {
+                } trailing: {
                     Text("Bar")
                 }
                 TwoColumn {
                     Text("cat")
-                } right: {
+                } trailing: {
                     Text("dogdddd")
                 }
             }
