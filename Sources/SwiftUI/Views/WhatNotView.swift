@@ -64,7 +64,7 @@ struct WhatNotView<OffCircleContent: View, OnCircleContent: View, OffTrailingCon
         .frame(height: thingHeight, alignment: .leading)
         .padding(.trailing)
         .foregroundColor(.white)
-        .fontDesign(.rounded)
+//        .fontDesign(.rounded)
         .fontWeight(.bold)
         .frame(alignment: .leading)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 100, style: .circular))
