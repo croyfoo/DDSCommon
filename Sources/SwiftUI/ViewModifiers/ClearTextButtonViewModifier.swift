@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 extension View {
     
     /// Adds a clear button on top of the input view. The button clears the given input
@@ -47,7 +46,11 @@ private struct ClearTextButtonViewModifier: ViewModifier {
                     onClearHandler?()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
+#if os(iOS)
+                        .foregroundColor(Color(.placeholderText))
+#else
                         .foregroundColor(Color(.placeholderTextColor))
+#endif
                         .padding(.trailing, 10)
                 }.buttonStyle(.plain)
             }
