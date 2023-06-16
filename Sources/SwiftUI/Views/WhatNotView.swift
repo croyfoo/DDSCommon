@@ -93,37 +93,48 @@ struct WhatNotView<OffCircleContent: View, OnCircleContent: View, OffTrailingCon
 }
 
 struct WhatNot_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            HStack {
+
+    struct WhatNotViewHarness: View {
+        @State var value: String = ""
+        
+        var body: some View {
+            VStack {
+                HStack {
+                    Spacer()
+                    WhatNotView(
+                        offCircleContent: {
+                            Circle()
+                                .scaledToFit()
+                                .foregroundStyle(Color.red.gradient)
+                                .overlay(
+                                    Image(systemName: "chart.bar.xaxis")
+                                )
+                        }, onCircleContent: {
+                            Circle()
+                                .scaledToFit()
+                                .foregroundStyle(Color.yellow.gradient)
+                                .overlay(
+                                    Text("🧑🏼‍💻")
+                                )
+                        }, offTrailingContent: {
+                            Text("1.2k")
+                                .foregroundColor(.primary)
+                        }, onTrailingContent: {
+//                            TextField("", text: $value)
+                            Text("Alex is in this \(Text("live!").foregroundColor(.yellow))")
+                                .foregroundColor(.primary)
+                        }
+                    )
+                }
                 Spacer()
-                WhatNotView(
-                    offCircleContent: {
-                        Circle()
-                            .scaledToFit()
-                            .foregroundStyle(Color.red.gradient)
-                            .overlay(
-                                Image(systemName: "chart.bar.xaxis")
-                            )
-                    }, onCircleContent: {
-                        Circle()
-                            .scaledToFit()
-                            .foregroundStyle(Color.yellow.gradient)
-                            .overlay(
-                                Text("🧑🏼‍💻")
-                            )
-                    }, offTrailingContent: {
-                        Text("1.2k")
-                            .foregroundColor(.primary)
-                    }, onTrailingContent: {
-                        Text("Alex is in this \(Text("live!").foregroundColor(.yellow))")
-                            .foregroundColor(.primary)
-                    }
-                )
             }
-            Spacer()
+            .padding()
+            .preferredColorScheme(.light)
         }
-        .padding()
-        .preferredColorScheme(.dark)
     }
+
+    static var previews: some View {
+        WhatNotViewHarness()
+    }
+
 }
