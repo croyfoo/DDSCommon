@@ -97,7 +97,7 @@ struct ClearButton: ViewModifier {
             text = ""
         } label: {
             Image(systemName: "delete.left")
-                .backport.foregroundStyle(.gray)
+                .foregroundStyle(.gray)
         }
         .buttonStyle(.plain)
         .padding(.trailing, 4)
