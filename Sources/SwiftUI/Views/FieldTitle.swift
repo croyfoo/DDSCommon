@@ -7,14 +7,18 @@
 
 import SwiftUI
 
+public enum TitlePosition {
+    case top, leading
+}
+
 public extension View {
     
-    func fieldTitle(_ title: String, font: Font = .caption, padding: Int = 0) -> some View {
-        modifier(FieldTitle(title, font: font))
+    func fieldTitle(_ title: String, font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top) -> some View {
+        modifier(FieldTitle(title, font: font, titlePosition: titlePosition))
     }
     
-    func fieldTitle(font: Font = .caption, padding: Int = 0, @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
-        modifier(FieldTitle(font: font, padding: padding, titleBuilder: titleBuilder))
+    func fieldTitle(font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top, @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
+        modifier(FieldTitle(font: font, padding: padding, titlePosition: titlePosition, titleBuilder: titleBuilder))
     }
 }
 
@@ -22,25 +26,36 @@ struct FieldTitle<Title:View>: ViewModifier {
     let font: Font
     let contentTitle: Title
     let padding: Int
+    let titlePosition: TitlePosition
     
-    public init(_ title: String, font: Font = .caption, padding: Int = 0) where Title == Text {
-        self.init(font: font, padding: padding) {
+    public init(_ title: String, font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top) where Title == Text {
+        self.init(font: font, padding: padding, titlePosition: titlePosition) {
             Text(title)
         }
     }
     
-    public init(font: Font = .caption, padding: Int = 0, @ViewBuilder titleBuilder: @escaping () -> Title ) {
-        self.font         = font
-        self.padding      = padding
-        self.contentTitle = titleBuilder()
+    public init(font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top, @ViewBuilder titleBuilder: @escaping () -> Title ) {
+        self.font          = font
+        self.padding       = padding
+        self.contentTitle  = titleBuilder()
+        self.titlePosition = titlePosition
     }
     
     func body(content: Content) -> some View {
         VStack(alignment: .leading, spacing: 5) {
-            contentTitle
-                .font(font)
-                .padding(.leading, CGFloat(padding))
-            content
+            if titlePosition == .top {
+                contentTitle
+                    .font(font)
+                    .padding(.leading, CGFloat(padding))
+                content
+            } else {
+                HStack {
+                    contentTitle
+                        .font(font)
+                        .padding(.trailing, CGFloat(padding))
+                    content
+                }
+            }
         }
     }
 }
