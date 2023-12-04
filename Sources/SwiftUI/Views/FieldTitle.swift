@@ -13,57 +13,62 @@ public enum TitlePosition {
 
 public extension View {
     
-    func fieldTitle(_ title: String, font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top,
-                    titleWidth: CGFloat? = nil) -> some View {
-        modifier(FieldTitle(title, font: font, titlePosition: titlePosition, titleWidth: titleWidth))
+    func fieldTitle(_ title: String, font: Font = .caption, padding: CGFloat = .zero, position: TitlePosition = .top,
+                    width: CGFloat? = nil, alignment: Alignment = .leading) -> some View {
+        modifier(FieldTitle(title, font: font, position: position, width: width, alignment: alignment))
     }
     
-    func fieldTitle(font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top, titleWidth: CGFloat? = nil,
-                    @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
-        modifier(FieldTitle(font: font, padding: padding, titlePosition: titlePosition, titleWidth: titleWidth, titleBuilder: titleBuilder))
+    func fieldTitle(font: Font = .caption, padding: CGFloat = .zero, position: TitlePosition = .top, width: CGFloat? = nil,
+                    alignment: Alignment = .leading, @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
+        modifier(FieldTitle(font: font, padding: padding, position: position, width: width,
+                            alignment: alignment, titleBuilder: titleBuilder))
     }
 }
 
 struct FieldTitle<Title:View>: ViewModifier {
     let font: Font
     let contentTitle: Title
-    let padding: Int
-    let titlePosition: TitlePosition
+    let padding: CGFloat
+    let position: TitlePosition
     let width: CGFloat?
+    let alignment: Alignment
     
-    public init(_ title: String, font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top,
-                titleWidth: CGFloat? = nil) where Title == Text {
-        self.init(font: font, padding: padding, titlePosition: titlePosition, titleWidth: titleWidth) {
+    public init(_ title: String, font: Font = .caption, padding: CGFloat = .zero, position: TitlePosition = .top,
+                width: CGFloat? = nil, alignment: Alignment = .leading) where Title == Text {
+        self.init(font: font, padding: padding, position: position, width: width) {
             Text(title)
         }
     }
     
-    public init(font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top, titleWidth: CGFloat? = nil,
-                @ViewBuilder titleBuilder: @escaping () -> Title ) {
+    public init(font: Font = .caption, padding: CGFloat = .zero, position: TitlePosition = .top, width: CGFloat? = nil,
+                alignment: Alignment = .leading, @ViewBuilder titleBuilder: @escaping () -> Title ) {
         self.font          = font
         self.padding       = padding
         self.contentTitle  = titleBuilder()
-        self.titlePosition = titlePosition
-        self.width          = titleWidth
+        self.position      = position
+        self.width         = width
+        self.alignment     = alignment
     }
     
     func body(content: Content) -> some View {
         VStack(alignment: .leading, spacing: 5) {
-            if titlePosition == .top {
-                contentTitle
-                    .font(font)
-                    .padding(.leading, CGFloat(padding))
-                    .frame(width: width)
+            if position == .top {
+                title()
                 content
             } else {
                 HStack {
-                    contentTitle
-                        .font(font)
-                        .padding(.trailing, CGFloat(padding))
-                        .frame(width: width)
+                    title()
                     content
                 }
             }
         }
+    }
+    
+    @ViewBuilder
+    private func title() -> some View {
+        contentTitle
+            .font(font)
+            .padding(.trailing, padding)
+            .frame(width: width, alignment: alignment)
     }
 }
