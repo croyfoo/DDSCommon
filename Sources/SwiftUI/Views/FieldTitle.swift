@@ -13,12 +13,14 @@ public enum TitlePosition {
 
 public extension View {
     
-    func fieldTitle(_ title: String, font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top) -> some View {
-        modifier(FieldTitle(title, font: font, titlePosition: titlePosition))
+    func fieldTitle(_ title: String, font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top,
+                    titleWidth: CGFloat? = nil) -> some View {
+        modifier(FieldTitle(title, font: font, titlePosition: titlePosition, titleWidth: titleWidth))
     }
     
-    func fieldTitle(font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top, @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
-        modifier(FieldTitle(font: font, padding: padding, titlePosition: titlePosition, titleBuilder: titleBuilder))
+    func fieldTitle(font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top, titleWidth: CGFloat? = nil,
+                    @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
+        modifier(FieldTitle(font: font, padding: padding, titlePosition: titlePosition, titleWidth: titleWidth, titleBuilder: titleBuilder))
     }
 }
 
