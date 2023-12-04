@@ -27,18 +27,22 @@ struct FieldTitle<Title:View>: ViewModifier {
     let contentTitle: Title
     let padding: Int
     let titlePosition: TitlePosition
+    let width: CGFloat?
     
-    public init(_ title: String, font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top) where Title == Text {
-        self.init(font: font, padding: padding, titlePosition: titlePosition) {
+    public init(_ title: String, font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top,
+                titleWidth: CGFloat? = nil) where Title == Text {
+        self.init(font: font, padding: padding, titlePosition: titlePosition, titleWidth: titleWidth) {
             Text(title)
         }
     }
     
-    public init(font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top, @ViewBuilder titleBuilder: @escaping () -> Title ) {
+    public init(font: Font = .caption, padding: Int = 0, titlePosition: TitlePosition = .top, titleWidth: CGFloat? = nil,
+                @ViewBuilder titleBuilder: @escaping () -> Title ) {
         self.font          = font
         self.padding       = padding
         self.contentTitle  = titleBuilder()
         self.titlePosition = titlePosition
+        self.width          = titleWidth
     }
     
     func body(content: Content) -> some View {
@@ -47,12 +51,14 @@ struct FieldTitle<Title:View>: ViewModifier {
                 contentTitle
                     .font(font)
                     .padding(.leading, CGFloat(padding))
+                    .frame(width: width)
                 content
             } else {
                 HStack {
                     contentTitle
                         .font(font)
                         .padding(.trailing, CGFloat(padding))
+                        .frame(width: width)
                     content
                 }
             }
