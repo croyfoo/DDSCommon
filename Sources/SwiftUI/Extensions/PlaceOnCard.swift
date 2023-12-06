@@ -45,7 +45,7 @@ struct PlacedOnCard: ViewModifier {
         ZStack(alignment: alignment) {
             content
                 .padding(5)
-                .frame(width: width, height: height, alignment: alignment)
+                .frame(maxWidth: width, maxHeight: height, alignment: alignment)
                 .background(style)
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                 .shadow(radius: showShadow ? shadowRadius : 0)
