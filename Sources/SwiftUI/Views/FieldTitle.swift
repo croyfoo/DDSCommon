@@ -67,6 +67,8 @@ struct FieldTitle<Title:View>: ViewModifier {
     @ViewBuilder
     private func title() -> some View {
         contentTitle
+            .lineLimit(1)
+            .minimumScaleFactor(0.2)
             .font(font)
             .padding(.trailing, padding)
             .frame(width: width, alignment: alignment)
