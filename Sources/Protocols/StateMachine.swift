@@ -10,6 +10,7 @@ import Foundation
 public protocol StateMachine where Self: CaseIterable & RawRepresentable & Equatable {
     var allCases: AllCases { get }
     static var allValues: [RawValue] { get }
+    @discardableResult
     func next() -> Self
     @discardableResult
     func peek() -> Self
