@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol StateMachine where Self: CaseIterable & RawRepresentable & Equatable {
+public protocol StateMachine where Self: CaseIterable & RawRepresentable & Equatable {
     var allCases: AllCases { get }
     static var allValues: [RawValue] { get }
     func next() -> Self
@@ -19,7 +19,7 @@ protocol StateMachine where Self: CaseIterable & RawRepresentable & Equatable {
     func isFirst() -> Bool
 }
 
-extension StateMachine {
+public extension StateMachine {
     var allCases: AllCases { Self.allCases }
     
     static var allValues: [RawValue] {
