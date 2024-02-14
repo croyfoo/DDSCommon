@@ -11,9 +11,13 @@ public protocol StateMachine where Self: CaseIterable & RawRepresentable & Equat
     var allCases: AllCases { get }
     static var allValues: [RawValue] { get }
     func next() -> Self
+    @discardableResult
     func peek() -> Self
+    @discardableResult
     func previous() -> Self
+    @discardableResult
     func first() -> Self
+    @discardableResult
     func lookBack() -> Self
     func isLast() -> Bool
     func isFirst() -> Bool
@@ -26,6 +30,7 @@ public extension StateMachine {
         return allCases.map { $0.rawValue }
     }
     
+    @discardableResult
     func next() -> Self {
         let index = allCases.firstIndex(of: self)!
         let next  = allCases.index(after: index)
