@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InvalidTextFieldStyle: TextFieldStyle {
+public struct InvalidTextFieldStyle: TextFieldStyle {
     private var isValid           = false
     private var changeEffectValue = 0
     
