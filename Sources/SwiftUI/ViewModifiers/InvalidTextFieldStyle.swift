@@ -11,12 +11,12 @@ public struct InvalidTextFieldStyle: TextFieldStyle {
     private var isValid           = false
     private var changeEffectValue = 0
     
-    init(_ isValid: Bool = true) {
+    public init(_ isValid: Bool = true) {
         self.isValid = isValid
         changeEffectValue += !isValid ? 1 : 0
     }
     
-    func _body(configuration: TextField<Self._Label>) -> some View {
+    public func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
             .overlay {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
