@@ -8,17 +8,17 @@
 import SwiftUI
 
 public enum TitlePosition {
-    case top, leading
+    case top, leading, none
 }
 
 public extension View {
     
-    func fieldTitle(_ title: String, font: Font = .caption, padding: CGFloat = .zero, position: TitlePosition = .top,
+    func fieldTitle(_ title: String, font: Font? = nil, padding: CGFloat = .zero, position: TitlePosition = .top,
                     width: CGFloat? = nil, alignment: Alignment = .leading) -> some View {
         modifier(FieldTitle(title, font: font, position: position, width: width, alignment: alignment))
     }
     
-    func fieldTitle(font: Font = .caption, padding: CGFloat = .zero, position: TitlePosition = .top, width: CGFloat? = nil,
+    func fieldTitle(font: Font? = nil, padding: CGFloat = .zero, position: TitlePosition = .top, width: CGFloat? = nil,
                     alignment: Alignment = .leading, @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
         modifier(FieldTitle(font: font, padding: padding, position: position, width: width,
                             alignment: alignment, titleBuilder: titleBuilder))
@@ -26,21 +26,21 @@ public extension View {
 }
 
 struct FieldTitle<Title:View>: ViewModifier {
-    let font: Font
+    let font: Font?
     let contentTitle: Title
     let padding: CGFloat
     let position: TitlePosition
     let width: CGFloat?
     let alignment: Alignment
     
-    public init(_ title: String, font: Font = .caption, padding: CGFloat = .zero, position: TitlePosition = .top,
+    public init(_ title: String, font: Font? = nil, padding: CGFloat = .zero, position: TitlePosition = .top,
                 width: CGFloat? = nil, alignment: Alignment = .leading) where Title == Text {
         self.init(font: font, padding: padding, position: position, width: width) {
             Text(title)
         }
     }
     
-    public init(font: Font = .caption, padding: CGFloat = .zero, position: TitlePosition = .top, width: CGFloat? = nil,
+    public init(font: Font? = nil, padding: CGFloat = .zero, position: TitlePosition = .top, width: CGFloat? = nil,
                 alignment: Alignment = .leading, @ViewBuilder titleBuilder: @escaping () -> Title ) {
         self.font          = font
         self.padding       = padding
