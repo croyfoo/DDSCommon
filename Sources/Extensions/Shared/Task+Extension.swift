@@ -6,24 +6,3 @@
 //
 
 import Foundation
-
-public extension Task where Failure == Error {
-    static func delayed( byTimeInterval delayInterval: TimeInterval, priority: TaskPriority? = nil,
-                         @_implicitSelfCapture operation: @MainActor @escaping () async throws -> Success ) -> Task {
-        Task(priority: priority) { //@MainActor in
-            let delay = UInt64(delayInterval * 1_000_000_000)
-            try await Task<Never, Never>.sleep(nanoseconds: delay)
-            return try await operation()
-        }
-    }
-}
-//extension Task where Failure == Error {
-//    static func delayed( byTimeInterval delayInterval: TimeInterval, priority: TaskPriority? = nil,
-//                         @_implicitSelfCapture operation: @escaping @Sendable () async throws -> Success ) -> Task {
-//        Task(priority: priority) { //@MainActor in
-//            let delay = UInt64(delayInterval * 1_000_000_000)
-//            try await Task<Never, Never>.sleep(nanoseconds: delay)
-//            return try await operation()
-//        }
-//    }
-//}
