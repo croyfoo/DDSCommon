@@ -10,7 +10,7 @@ import SwiftUI
 
 public extension Color {
     
-    #if os(macOS)
+#if os(macOS)
     static let backgroundColor     = Color(.windowBackgroundColor)
     static let secondaryBackground = Color(.underPageBackgroundColor)
     static let tertiaryBackground  = Color(.controlBackgroundColor)
