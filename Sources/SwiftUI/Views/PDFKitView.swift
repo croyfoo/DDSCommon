@@ -20,7 +20,7 @@ public struct PDFKitView: representable {
     var data: Data
     let singlePage: Bool
     
-    init(_ data: Data, singlePage: Bool = false) {
+    public init(_ data: Data, singlePage: Bool = false) {
         self.data       = data
         self.singlePage = singlePage
     }
