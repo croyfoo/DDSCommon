@@ -175,3 +175,32 @@ public extension String {
         self = self.capitalizingFirstLetter()
     }
 }
+
+public extension String {
+    func formatPhoneNumber(mask: String = "(XXX) XXX-XXXX") -> String {
+        self.formatWith(mask: mask)
+    }
+
+    func formatDate(mask: String = "XX/XX/XXXX") -> String {
+        self.formatWith(mask: mask)
+    }
+    
+    func formatWith(mask: String) -> String {
+        let cleanNumber = components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        
+        var result     = ""
+        var startIndex = cleanNumber.startIndex
+        let endIndex   = cleanNumber.endIndex
+        
+        for char in mask where startIndex < endIndex {
+            if char == "X" {
+                result.append(cleanNumber[startIndex])
+                startIndex = cleanNumber.index(after: startIndex)
+            } else {
+                result.append(char)
+            }
+        }
+        
+        return result
+    }
+}
