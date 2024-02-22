@@ -138,7 +138,7 @@ public extension String {
         return self.range(of: emailPattern, options: .regularExpression) != nil
     }
 
-    func validPhoneNumber() -> Bool {
+    var validPhoneNumber: Bool {
         let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
         return self.range(of: phonePattern, options: .regularExpression) != nil
     }
