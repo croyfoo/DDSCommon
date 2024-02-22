@@ -12,6 +12,7 @@ public struct InvalidTextFieldStyle: TextFieldStyle {
     private var changeEffectValue = 0
     private var padding: CGFloat
     private var edges: [Edge]
+    private let allEdges: [Edge] = [.trailing, .leading, .bottom, .top]
 
     public init(_ isValid: Bool = true, padding: CGFloat = .zero, edges: Edge...) {
         self.isValid       = isValid
@@ -25,12 +26,14 @@ public struct InvalidTextFieldStyle: TextFieldStyle {
             .padding(padding)
             .overlay {
                 if !isValid {
-                    EdgeBorder(width: 2, edges: edges)
-                        .foregroundColor(isValid ? .clear : .red)
-//                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-//                        .stroke(isValid ? .clear : .red, lineWidth: 2)
+                    if edges == allEdges {
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .stroke(.red, lineWidth: 2)
+                    } else {
+                        EdgeBorder(width: 2, edges: edges)
+                            .foregroundColor(.red)
+                    }
                 }
             }
-        //            .changeEffect(.shake(rate: .fast), value: changeEffectValue)
     }
 }
