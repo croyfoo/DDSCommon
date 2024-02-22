@@ -267,8 +267,8 @@ public extension View {
         )
     }
     
-    func border(width: CGFloat, edges: [Edge], color: Color) -> some View {
+    func border(width: CGFloat, edges: [Edge], color: any ShapeStyle) -> some View {
         overlay(EdgeBorder(width: width, edges: edges)
-            .foregroundColor(color))
+            .foregroundStyle(AnyShapeStyle(color)))
     }
 }
