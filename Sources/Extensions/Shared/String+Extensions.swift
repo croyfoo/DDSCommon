@@ -128,19 +128,18 @@ public extension String {
 // MARK: Check if a string is a valid URL
 public extension String {
     var validURL: Bool {
-        let regEx = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", argumentArray: [regEx])
-        return predicate.evaluate(with: self)
+        let pattern = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
+        return self.range(of: pattern, options: .regularExpression) != nil
     }
     
     var validEmail: Bool {
-        let emailPattern = #"^\S+@\S+\.\S+$"#
-        return self.range(of: emailPattern, options: .regularExpression) != nil
+        let pattern = #"^\S+@\S+\.\S+$"#
+        return self.range(of: pattern, options: .regularExpression) != nil
     }
 
     var validPhoneNumber: Bool {
-        let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
-        return self.range(of: phonePattern, options: .regularExpression) != nil
+        let pattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
+        return self.range(of: pattern, options: .regularExpression) != nil
     }
 }
 

@@ -9,12 +9,12 @@ import SwiftUI
 import PDFKit
 
 #if os(macOS)
-typealias representable = NSViewRepresentable
+typealias Representable = NSViewRepresentable
 #else
-typealias representable = UIViewRepresentable
+typealias Representable = UIViewRepresentable
 #endif
 
-public struct PDFKitView: representable {
+public struct PDFKitView: Representable {
     public typealias UIViewType = PDFView
     
     var data: Data
