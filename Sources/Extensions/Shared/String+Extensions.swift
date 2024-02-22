@@ -132,6 +132,16 @@ public extension String {
         let predicate = NSPredicate(format: "SELF MATCHES %@", argumentArray: [regEx])
         return predicate.evaluate(with: self)
     }
+    
+    var validEmail: Bool {
+        let emailPattern = #"^\S+@\S+\.\S+$"#
+        return self.range(of: emailPattern, options: .regularExpression) != nil
+    }
+
+    func validPhoneNumber() -> Bool {
+        let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
+        return self.range(of: phonePattern, options: .regularExpression) != nil
+    }
 }
 
 public extension String {
