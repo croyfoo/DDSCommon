@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct EdgeBorder: Shape {
+public struct EdgeBorder: Shape {
     
     var width: CGFloat
     var edges: [Edge]
     
-    func path(in rect: CGRect) -> Path {
+    public func path(in rect: CGRect) -> Path {
         var path = Path()
         for edge in edges {
             var x: CGFloat {
