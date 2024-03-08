@@ -5,6 +5,11 @@ public struct EdgeBorder: Shape {
     var width: CGFloat
     var edges: [Edge]
     
+    public init(width: CGFloat, edges: [Edge]) {
+        self.width = width
+        self.edges = edges
+    }
+    
     public func path(in rect: CGRect) -> Path {
         var path = Path()
         for edge in edges {
