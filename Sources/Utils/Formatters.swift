@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by David Croy on 3/14/24.
 //
@@ -86,5 +86,13 @@ public extension Formatters {
     
     static func localizedMonth(_ months: Int) -> AttributedString {
         AttributedString(localized: String.LocalizationValue("^[\(months) month](inflect: true)"))
+    }
+    
+    static func todayAsString() -> String {
+        let currentDate = Date()
+        let calendar    = Calendar.current
+        let today        = String(format: "%02d/%02d/%04d", calendar.component(.month, from: currentDate),
+                                  calendar.component(.day, from: currentDate), calendar.component(.year, from: currentDate))
+        return today
     }
 }
