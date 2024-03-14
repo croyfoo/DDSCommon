@@ -199,7 +199,7 @@ public extension View {
 }
 
 // defines OptionSet, which corners to be rounded – same as UIRectCorner
-public struct RectCorner: OptionSet {
+public struct RectCorner: OptionSet, Sendable {
     
     public let rawValue: Int
     
