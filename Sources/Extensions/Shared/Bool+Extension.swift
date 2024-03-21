@@ -48,3 +48,11 @@ public extension Bool {
         return false
     }
 }
+
+public extension Bool {
+    var inverted: Self {
+        get { !self }
+        set { self = !newValue }
+    }
+}
+
