@@ -47,12 +47,20 @@ public extension Bool {
         // It's iOS < 16 so return false.
         return false
     }
-}
 
-public extension Bool {
+    static var iOS17: Bool {
+        if #available(iOS 17, *) {
+            // It's iOS 16 so return true.
+            return true
+        }
+        // It's iOS < 17 so return false.
+        return false
+    }
+    
     var inverted: Self {
         get { !self }
         set { self = !newValue }
     }
 }
+
 
