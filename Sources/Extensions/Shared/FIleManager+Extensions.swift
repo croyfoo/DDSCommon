@@ -38,13 +38,13 @@ public extension FileManager {
     }
     
     private func decrypt(data: Data, key: String) -> Data? {
-        let keyData = key.data(using: .utf8)!
-        let inputData = data as NSData
-        let decryptedData = NSMutableData(length: Int(inputData.length) + kCCBlockSizeAES128)!
-        let keyLength = size_t(kCCKeySizeAES128)
-        let operation = CCOperation(kCCDecrypt)
-        let algorithm = CCAlgorithm(kCCAlgorithmAES)
-        let options = CCOptions(kCCOptionPKCS7Padding)
+        let keyData        = key.data(using: .utf8)!
+        let inputData      = data as NSData
+        let decryptedData  = NSMutableData(length: Int(inputData.length) + kCCBlockSizeAES128)!
+        let keyLength      = size_t(kCCKeySizeAES128)
+        let operation      = CCOperation(kCCDecrypt)
+        let algorithm      = CCAlgorithm(kCCAlgorithmAES)
+        let options        = CCOptions(kCCOptionPKCS7Padding)
         
         var numBytesDecrypted: size_t = 0
         
@@ -66,14 +66,15 @@ public extension FileManager {
         
         return nil
     }
+    
     private func encrypt(data: Data, key: String) -> Data? {
-        let keyData = key.data(using: .utf8)!
-        let inputData = data as NSData
-        let encryptedData = NSMutableData(length: Int(inputData.length) + kCCBlockSizeAES128)!
-        let keyLength = size_t(kCCKeySizeAES128)
-        let operation = CCOperation(kCCEncrypt)
-        let algorithm = CCAlgorithm(kCCAlgorithmAES)
-        let options = CCOptions(kCCOptionPKCS7Padding)
+        let keyData        = key.data(using: .utf8)!
+        let inputData      = data as NSData
+        let encryptedData  = NSMutableData(length: Int(inputData.length) + kCCBlockSizeAES128)!
+        let keyLength      = size_t(kCCKeySizeAES128)
+        let operation      = CCOperation(kCCEncrypt)
+        let algorithm      = CCAlgorithm(kCCAlgorithmAES)
+        let options        = CCOptions(kCCOptionPKCS7Padding)
         
         var numBytesEncrypted: size_t = 0
         

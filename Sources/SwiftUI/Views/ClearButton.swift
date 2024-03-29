@@ -44,12 +44,12 @@ import SwiftUI
 struct ImageButton<Img: View>: ViewModifier {
     let aligment: Alignment
     let image: Img
-    let strokeColor: Color
+    let strokeColor: AnyShapeStyle
     
-    public init(_ alignment: Alignment, strokeColor: Color = .foregroundDarkHover, @ViewBuilder img: @escaping () -> Img) {
+    public init(_ alignment: Alignment, strokeColor: any ShapeStyle = AnyShapeStyle(Color.foregroundDarkHover), @ViewBuilder img: @escaping () -> Img) {
         self.aligment = alignment
         self.image    = img()
-        self.strokeColor = strokeColor
+        self.strokeColor = AnyShapeStyle(strokeColor)
     }
     
     func body(content: Content) -> some View {
@@ -112,43 +112,32 @@ public extension View {
 //    public func imageButton(text: Binding<String>, alignment: Alignment = .trailing, imageName: String = "delete.left" ) -> some View {
 //        modifier(ImageButton(text: text, aligment: alignment, imageName: imageName))
 //    }
-    func imageButton(_ alignment: Alignment = .trailing, strokeColor: Color = .foregroundDarkHover, @ViewBuilder leadingImage: @escaping () -> some View) -> some View {
+    func imageButton(_ alignment: Alignment = .trailing, strokeColor: any ShapeStyle = AnyShapeStyle(Color.foregroundDarkHover), @ViewBuilder leadingImage: @escaping () -> some View) -> some View {
         modifier(ImageButton(alignment, strokeColor: strokeColor, img: leadingImage))
     }
 }
 
-struct ClearButton_Previews: PreviewProvider {
-    @State var text: String
-    static var previews: some View {
-        VStack {
-            StatefulPreviewWrapper("") {
-                TextField("Enter something", text: $0)
-                    .textFieldStyle(.plain)
-                    .padding(5)
-//                    .imageButton(.trailing) {
-//                        Image(systemName: "delete.left")
-//                            .padding(.trailing, 5)
-//                    }
-                    .imageButton(.trailing) {
-                        Image(systemName: "magnifyingglass")
-                    }
-                    .padding()
-            }
-        }
-        .frame(width: 300, height: 200)
-    }
-}
+#Preview {
+    @State var text: String = ""
 
-struct StatefulPreviewWrapper<Value, Content: View>: View {
-    @State var value: Value
-    var content: (Binding<Value>) -> Content
-    
-    var body: some View {
-        content($value)
+    return VStack {
+        TextField("Enter something", text: $text)
+            .textFieldStyle(.plain)
+            .padding(5)
+            //                    .imageButton(.trailing) {
+            //                        Image(systemName: "delete.left")
+            //                            .padding(.trailing, 5)
+            //                    }
+            .imageButton(.leading, strokeColor: Color.accentColor) {
+                Button {
+                    text = ""
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                }
+            }
+            .padding()
     }
+//    .border(.red)
+    .frame(width: 300, height: 200)
     
-    init(_ value: Value, content: @escaping (Binding<Value>) -> Content) {
-        self._value = State(wrappedValue: value)
-        self.content = content
-    }
 }

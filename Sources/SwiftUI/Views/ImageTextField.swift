@@ -9,13 +9,13 @@ import SwiftUI
 
 public extension View {
     
-    func imgTextField(placeHolder: String = "", showPlaceHolder: Bool = true, height: CGFloat = 50, width: CGFloat = 250,
+    func imgTextField(placeHolder: String = "", showPlaceHolder: Bool = true, 
+                      height: CGFloat = 50, width: CGFloat = 250,
                       leadingImage: String) -> some View {
         modifier(ImageTextField(placeHolder: placeHolder, showPlaceHolder: showPlaceHolder, height: height, width: width, leadingImage: leadingImage))
     }
     
-    func imgTextField(placeHolder: String = "", showPlaceHolder: Bool = true, height: CGFloat = 50, width: CGFloat = 250,
-                      trailingImage: String) -> some View {
+    func imgTextField(placeHolder: String = "", showPlaceHolder: Bool = true, height: CGFloat = 50, width: CGFloat = 250,                      trailingImage: String) -> some View {
         modifier(ImageTextField(placeHolder: placeHolder, showPlaceHolder: showPlaceHolder, height: height, width: width, trailingImage: trailingImage))
     }
     
@@ -117,4 +117,32 @@ struct ImageTextField<LeadingImage: View, TrailingImage: View>: ViewModifier {
         .foregroundColor(colorScheme == .dark ? .white.opacity(0.75): .black)
         .placeOnCard(.regularMaterial, height: height, width: width, shadow: false, shadowRadius: 1)
     }
+}
+
+#Preview {
+    @State var str = ""
+    
+    if #available(iOS 17.0, *) {
+        return TextField("Email", text: $str)
+            .padding(8)
+            .imageButton(.trailing, strokeColor: Color.gray.tertiary) {
+                Image(systemName: "delete.left")
+                    .onTapGesture {
+                        str = ""
+                    }
+            }
+            .padding()
+    } else {
+        return TextField("Email", text: $str)
+            .padding(8)
+            .imageButton(.trailing, strokeColor: Color.accentColor) {
+                Image(systemName: "delete.left")
+                    .onTapGesture {
+                        str = ""
+                    }
+            }
+            .padding()
+    }
+//        .imageTextField(leadingImage:"envelope")
+//        .padding()
 }

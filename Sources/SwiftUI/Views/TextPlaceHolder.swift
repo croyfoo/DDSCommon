@@ -53,3 +53,7 @@ struct DefaultPlaceHolderType: View {
             .foregroundColor(colorScheme == .dark ? .white.opacity(0.50) : .gray.opacity(0.80))
     }
 }
+
+#Preview {
+    DefaultPlaceHolderType(placeHolder: "Hello world")
+}
