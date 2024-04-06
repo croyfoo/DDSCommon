@@ -71,6 +71,6 @@ struct FieldTitle<Title:View>: ViewModifier {
             .padding(.trailing, padding)
             .frame(width: width, alignment: alignment)
             .lineLimit(1)
-            .minimumScaleFactor(0.2)
+            .minimumScaleFactor(0.1)
     }
 }
