@@ -14,14 +14,14 @@ public enum TitlePosition {
 public extension View {
     
     func fieldTitle(_ title: String, font: Font? = nil, padding: CGFloat = .zero, position: TitlePosition = .top,
-                    width: CGFloat? = nil, alignment: Alignment = .leading) -> some View {
-        modifier(FieldTitle(title, font: font, position: position, width: width, alignment: alignment))
+                    width: CGFloat? = nil, alignment: Alignment = .leading, lineLimit: Int? = 1) -> some View {
+        modifier(FieldTitle(title, font: font, position: position, width: width, alignment: alignment, lineLimit: lineLimit))
     }
     
     func fieldTitle(font: Font? = nil, padding: CGFloat = .zero, position: TitlePosition = .top, width: CGFloat? = nil,
-                    alignment: Alignment = .leading, @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
+                    alignment: Alignment = .leading, lineLimit: Int? = 1, @ViewBuilder titleBuilder: @escaping () -> some View) -> some View {
         modifier(FieldTitle(font: font, padding: padding, position: position, width: width,
-                            alignment: alignment, titleBuilder: titleBuilder))
+                            alignment: alignment, lineLimit: lineLimit, titleBuilder: titleBuilder))
     }
 }
 
@@ -32,22 +32,24 @@ struct FieldTitle<Title:View>: ViewModifier {
     let position: TitlePosition
     let width: CGFloat?
     let alignment: Alignment
+    let lineLimit: Int?
     
     public init(_ title: String, font: Font? = nil, padding: CGFloat = .zero, position: TitlePosition = .top,
-                width: CGFloat? = nil, alignment: Alignment = .leading) where Title == Text {
-        self.init(font: font, padding: padding, position: position, width: width) {
+                width: CGFloat? = nil, alignment: Alignment = .leading, lineLimit: Int? = nil) where Title == Text {
+        self.init(font: font, padding: padding, position: position, width: width, lineLimit: lineLimit) {
             Text(title)
         }
     }
     
     public init(font: Font? = nil, padding: CGFloat = .zero, position: TitlePosition = .top, width: CGFloat? = nil,
-                alignment: Alignment = .leading, @ViewBuilder titleBuilder: @escaping () -> Title ) {
+                alignment: Alignment = .leading, lineLimit: Int? = nil, @ViewBuilder titleBuilder: @escaping () -> Title ) {
         self.font          = font
         self.padding       = padding
         self.contentTitle  = titleBuilder()
         self.position      = position
         self.width         = width
         self.alignment     = alignment
+        self.lineLimit     = lineLimit
     }
     
     func body(content: Content) -> some View {
@@ -70,7 +72,9 @@ struct FieldTitle<Title:View>: ViewModifier {
             .font(font)
             .padding(.trailing, padding)
             .frame(width: width, alignment: alignment)
-            .lineLimit(1)
-            .minimumScaleFactor(0.1)
+//            .lineLimit(1)
+//            .minimumScaleFactor(0.1)
+            .lineLimit(lineLimit)
+            .minimumScaleFactor(lineLimit != nil ? 0.2 : 0.0)
     }
 }
