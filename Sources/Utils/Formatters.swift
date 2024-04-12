@@ -96,3 +96,36 @@ public extension Formatters {
         return today
     }
 }
+
+public protocol Formatable {}
+
+public extension Formatable {
+    
+    func currency(_ value: Float?, fractions: Int = 0) -> String {
+        Formatters.currency(value, fractions: fractions)
+    }
+    
+    func currency(_ value: Double?, fractions: Int = 0) -> String {
+        Formatters.currency(value, fractions: fractions)
+    }
+    
+    func percent(_ value: Float, fractions: Int = 0) -> String {
+        Formatters.percent(value, fractions: fractions)
+    }
+    
+    func percent(_ value: Double?, fractions: Int = 0) -> String {
+        Formatters.percent(value, fractions: fractions)
+    }
+    
+    func decimal(_ value: Double?, fractions: Int = 2) -> String {
+        Formatters.decimal(value, fractions: fractions)
+    }
+    
+    func localizedYear(_ years: Int) -> AttributedString {
+        Formatters.localizedYear(years)
+    }
+    
+    func localizedMonth(_ months: Int) -> AttributedString {
+        Formatters.localizedMonth(months)
+    }
+}
