@@ -12,13 +12,17 @@ public struct InvalidTextFieldStyle: TextFieldStyle {
     private var changeEffectValue = 0
     private var padding: CGFloat
     private var edges: [Edge]
-    private let allEdges: [Edge] = [.trailing, .leading, .bottom, .top]
+    static let allEdges: [Edge] = [.trailing, .leading, .bottom, .top]
 
     public init(_ isValid: Bool = true, padding: CGFloat = .zero, edges: Edge...) {
+        self.init(isValid, padding: padding, edges: edges)
+    }
+
+    public init(_ isValid: Bool = true, padding: CGFloat = .zero, edges: [Edge] = []) {
         self.isValid       = isValid
         changeEffectValue += !isValid ? 1 : 0
         self.padding       = padding
-        self.edges         = edges.isEmpty ? [.trailing, .leading, .bottom, .top] : edges
+        self.edges         = edges.isEmpty ? Self.allEdges : edges
     }
     
     public func _body(configuration: TextField<Self._Label>) -> some View {
@@ -26,7 +30,7 @@ public struct InvalidTextFieldStyle: TextFieldStyle {
             .padding(padding)
             .overlay {
                 if !isValid {
-                    if edges == allEdges {
+                    if edges == Self.allEdges {
                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .stroke(.red, lineWidth: 2)
                     } else {
