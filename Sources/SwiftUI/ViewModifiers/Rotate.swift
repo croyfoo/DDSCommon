@@ -8,20 +8,20 @@
 import Foundation
 import SwiftUI
 
-struct Rotate: ViewModifier {
+public struct Rotate: ViewModifier {
     @State private var degrees: Double
     private let startDegrees: Double
     private let rotationDegres: Double
     private let gesture: any Gesture
     
-    init(_ startDegrees: Double = -90.0, gesture: any Gesture = TapGesture()) {
+    public init(_ startDegrees: Double = -90.0, gesture: any Gesture = TapGesture()) {
         self.startDegrees   = startDegrees
         self._degrees       = State(initialValue: startDegrees)
         self.rotationDegres = startDegrees - 360
         self.gesture        = gesture
     }
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .rotationEffect(.degrees(degrees))
 //            .gesture(
@@ -40,7 +40,7 @@ struct Rotate: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     func rotate(_ startDegrees: Double = -90) -> some View {
         self.modifier(Rotate(startDegrees))
     }
