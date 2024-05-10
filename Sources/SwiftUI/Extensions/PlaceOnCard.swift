@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@available(macOS 12.0, *)
+//@available(macOS 12.0, *)
 
 public extension View {
     func placeOnCard(_ style: any ShapeStyle, height: CGFloat? = nil,
@@ -20,7 +20,7 @@ public extension View {
     }
 }
 
-@available(macOS 12.0, *)
+//@available(macOS 12.0, *)
 struct PlacedOnCard: ViewModifier {
     let alignment: Alignment
     let width: CGFloat?
@@ -49,8 +49,36 @@ struct PlacedOnCard: ViewModifier {
                 .background(style)
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                 .shadow(radius: showShadow ? shadowRadius : 0)
-            //                .background(RoundedRectangle(cornerRadius: cornerRadius).foregroundColor(.blue))
+//                .background(RoundedRectangle(cornerRadius: cornerRadius).foregroundStyle())
         }
     }
 }
 
+#Preview {
+    let border = true
+    return VStack {
+        Text("Regular Material")
+            .padding()
+            .placeOnCard(.regularMaterial, width: 200, shadow: border)
+        Text("Thin Material")
+            .padding()
+            .placeOnCard(.thinMaterial, width: 200, shadow: border)
+            .frame(width: 200)
+        Text("Ultra thin Material")
+            .padding()
+            .placeOnCard(.ultraThinMaterial, width: 200, shadow: border)
+        Text("Thick Material")
+            .padding()
+            .placeOnCard(.thickMaterial, width: 200, shadow: border)
+        Text("Ultra thick Material")
+            .padding()
+            .placeOnCard(.ultraThickMaterial, width: 200, shadow: border)
+        
+        Text("Foo")
+            .foregroundStyle(.secondary)
+            .padding()
+            .background(.ultraThinMaterial)
+    }
+    .padding()
+//    .background(.blue.opacity(0.1))
+}
