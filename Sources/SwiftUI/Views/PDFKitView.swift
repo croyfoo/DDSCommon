@@ -15,16 +15,23 @@ typealias Representable = UIViewRepresentable
 #endif
 
 public struct PDFKitView: Representable {
-    public typealias UIViewType = PDFView
-    
-    var data: Data
-    let singlePage: Bool
-    
-    public init(_ data: Data, singlePage: Bool = false) {
-        self.data       = data
-        self.singlePage = singlePage
-    }
-    
+  public typealias UIViewType = PDFView
+  
+  var data: Data
+  let singlePage: Bool
+  
+  public init(_ data: Data, singlePage: Bool = false) {
+    self.data       = data
+    self.singlePage = singlePage
+  }
+  
+  public init(resource: String, singlePage: Bool = false) {
+    let url         = Bundle.main.url(forResource: resource,
+                                      withExtension: "pdf")
+    self.data       = try! Data(contentsOf: url!)
+    self.singlePage = singlePage
+  }
+
 #if os(iOS)
     public func makeUIView(context: Context) -> UIViewType {
         makeView(context: context)
