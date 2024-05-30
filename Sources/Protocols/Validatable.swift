@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Validatable {}
+public protocol Validatable {}
 
 extension Validatable {
   public func validValue(_ value: Int?) -> Bool {
@@ -58,14 +58,14 @@ extension Validatable {
   }
 }
 
-enum ValidationError<V : RawRepresentable>: Error {
+public enum ValidationError<V : RawRepresentable>: Error {
   case isEmpty(V)
   case invalidFormat(V, String? = nil)
   case invalidLength(V, Int)
   case customMessage(V, String)
   case notChecked(V)
   
-  var message: String {
+  public var message: String {
     switch self {
       case .isEmpty(let field):
         return "\(field.rawValue) must not be blank"
@@ -80,7 +80,7 @@ enum ValidationError<V : RawRepresentable>: Error {
     }
   }
   
-  var field: V {
+  public var field: V {
     switch self {
       case .isEmpty(let field):
         return field
