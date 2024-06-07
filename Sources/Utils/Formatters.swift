@@ -101,6 +101,16 @@ public protocol Formatable {}
 
 public extension Formatable {
     
+  func formatDateTime(_ date: Date) -> String {
+    formatDate(date, "MMM d, yyyy h:mm a")
+  }
+
+  func formatDate(_ date: Date, format: String = "MMM d, yyyy") -> String {
+    let dateFormatter        = DateFormatter()
+    dateFormatter.dateFormat = format
+    return dateFormatter.string(from: date)
+  }
+
     func currency(_ value: Float?, fractions: Int = 0) -> String {
         Formatters.currency(value, fractions: fractions)
     }
