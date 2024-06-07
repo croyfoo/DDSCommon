@@ -101,8 +101,8 @@ public protocol Formatable {}
 
 public extension Formatable {
     
-  func formatDateTime(_ date: Date) -> String {
-    formatDate(date, "MMM d, yyyy h:mm a")
+  func formatDateTime(_ date: Date, format: String = "MMM d, yyyy h:mm a") -> String {
+    formatDate(date, format: format)
   }
 
   func formatDate(_ date: Date, format: String = "MMM d, yyyy") -> String {
