@@ -8,18 +8,22 @@
 import SwiftUI
 
 public struct ScrollableText: View {
-  let text: String
+  let attributedContent: AttributedString
   let alignment: Alignment
   
   public init(_ text: String, alignment: Alignment = .center) {
-    self.text      = text
-    self.alignment = alignment
+    self.init(AttributedString(text), alignemnt: alignment)
+  }
+  
+  public init(_ attributedContent: AttributedString, alignemnt: Alignment = .center) {
+    self.attributedContent = attributedContent
+    self.alignment         = alignemnt
   }
   
   public var body: some View {
     ScrollView {
       VStack {
-        Text(text)
+        Text(attributedContent)
           .textSelection(.enabled)
           .lineLimit(nil)
       }
