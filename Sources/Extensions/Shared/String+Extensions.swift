@@ -200,8 +200,8 @@ public extension String {
 
 //https://www.avanderlee.com/swiftui/redacted-view-modifier/?utm_source=swiftlee&utm_medium=swiftlee_weekly&utm_campaign=issue_102
 public extension String {
-  static func placeholder(length: Int) -> String {
-    String(Array(repeating: "X", count: length))
+  static func placeholder(length: Int, repeating: Element = "X") -> String {
+    String(Array(repeating: repeating, count: length))
   }
 }
 

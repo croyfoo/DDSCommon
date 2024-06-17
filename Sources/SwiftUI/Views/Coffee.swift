@@ -31,7 +31,7 @@ struct HomeView: View {
     let yourPodcasts: [Podcast]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .leading) {
                 Text("Welcome to SwiftUI")
                     .font(.subheadline)
