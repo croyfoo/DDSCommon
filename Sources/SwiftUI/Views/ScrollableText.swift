@@ -12,12 +12,13 @@ public struct ScrollableText: View {
   let alignment: Alignment
   
   public init(_ text: String, alignment: Alignment = .center) {
-    self.init(AttributedString(text), alignemnt: alignment)
+    self.init(AttributedString(text), alignment: alignment)
   }
   
-  public init(_ attributedContent: AttributedString, alignemnt: Alignment = .center) {
+  public init(_ attributedContent: AttributedString, 
+              alignment: Alignment = .center) {
     self.attributedContent = attributedContent
-    self.alignment         = alignemnt
+    self.alignment         = alignment
   }
   
   public var body: some View {
