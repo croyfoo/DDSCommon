@@ -69,7 +69,7 @@ public extension String {
     return components(separatedBy: characterSet).joined()
   }
   
-  func preparForNLP(lemmatize: Bool = true) -> String {
+  func preparForNLP(lemmatize: Bool = false) -> String {
     let wordSet = NSMutableOrderedSet(array: trimmingPuctuationCharacters().lowercased().byWords)
     wordSet.minus(NSOrderedSet(array: stopWords))
     let arr = wordSet.array.compactMap { $0 as? String }
