@@ -6,11 +6,11 @@
 //
 
 extension Int {
-  func isEven() -> Bool {
+  var isEven: Bool {
     self % 2 == 0
   }
   
-  func isOdd() -> Bool {
-    !isEven()
+  var isOdd: Bool {
+    !isEven
   }
 }
