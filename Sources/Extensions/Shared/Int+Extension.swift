@@ -5,7 +5,7 @@
 //  Created by David Croy on 8/22/24.
 //
 
-extension Int {
+public extension Int {
   var isEven: Bool {
     self % 2 == 0
   }
