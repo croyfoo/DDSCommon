@@ -70,12 +70,17 @@ public extension String {
   }
   
   func preparForNLP(lemmatize: Bool = false) -> String {
+    let str = removeStopWords()
+    return lemmatize ? str.lemmatized() : str
+  }
+
+  func removeStopWords() -> String {
     let wordSet = NSMutableOrderedSet(array: trimmingPuctuationCharacters().lowercased().byWords)
     wordSet.minus(NSOrderedSet(array: stopWords))
     let arr = wordSet.array.compactMap { $0 as? String }
     
     let str = arr.joined(separator: " ")
-    return lemmatize ? str.lemmatized() : str
+    return str
   }
   
   func lemmatized() -> String {
