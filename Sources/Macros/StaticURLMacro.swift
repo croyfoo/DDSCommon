@@ -36,6 +36,6 @@ public struct StaticURLMacro: ExpressionMacro {
   }
 }
 
-@main struct StaticURLPlugin: CompilerPlugin {
-  let providingMacros: [Macro.Type] = [StaticURLMacro.self]
-}
+//@main struct StaticURLPlugin: CompilerPlugin {
+//  let providingMacros: [Macro.Type] = [StaticURLMacro.self]
+//}
