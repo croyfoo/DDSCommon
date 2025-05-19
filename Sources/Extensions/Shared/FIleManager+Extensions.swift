@@ -37,7 +37,7 @@ public extension FileManager {
         try encryptedData.write(to: URL(filePath: encryptedFile), options: .atomic)
     }
     
-    private func decrypt(data: Data, key: String) -> Data? {
+    func decrypt(data: Data, key: String) -> Data? {
         let keyData        = key.data(using: .utf8)!
         let inputData      = data as NSData
         let decryptedData  = NSMutableData(length: Int(inputData.length) + kCCBlockSizeAES128)!
@@ -67,7 +67,7 @@ public extension FileManager {
         return nil
     }
     
-    private func encrypt(data: Data, key: String) -> Data? {
+    func encrypt(data: Data, key: String) -> Data? {
         let keyData        = key.data(using: .utf8)!
         let inputData      = data as NSData
         let encryptedData  = NSMutableData(length: Int(inputData.length) + kCCBlockSizeAES128)!
